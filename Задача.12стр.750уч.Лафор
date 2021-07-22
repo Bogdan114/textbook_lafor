@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+#include <algorithm>
+#include <list>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+
+	list<int> a;
+
+
+	ifstream ifs("Text.txt");
+	istream_iterator<int> start_i(ifs);
+	istream_iterator<int> finish_i;
+	ofstream ofs("Text_inst.txt");
+	ostream_iterator<int> start(ofs, "\n");
+	copy(start_i, finish_i, start);
+
+	system("pause>nul");
+	return 0;
+}
