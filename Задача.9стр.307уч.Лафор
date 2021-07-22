@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+class stack
+{
+private:
+	static const int MAX = 10;
+	int mas[MAX];
+	int top;
+	int tail;
+public:
+	stack()
+	{
+		top = 0;
+		tail = 0;
+	}
+	void put(int temp)
+	{
+		mas[tail] = temp;
+		if (tail + 1 == MAX)
+		{
+			tail = 0;
+		}
+		else tail++;
+	}
+	int get()
+	{
+		if(top==tail-1)
+			cout << "Последний элемент " << endl;
+		if (top + 1 == MAX)
+		{
+			top = 0;
+		}
+		return mas[top++];
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	char a;
+	int i = 0;
+	stack A;
+	while (27 != (a = _getche()))
+	{
+		cout << " Число - "; cin >> i;
+		A.put(i);
+	}
+	while (27 != (a = _getche()))
+	{
+	
+		cout << " Число - "<< A.get();
+
+	}
+	system("pause>nul");
+	return 0;
+}
