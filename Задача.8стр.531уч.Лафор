@@ -1,0 +1,221 @@
+#include <cstring>
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+const int MAX = 100;
+class Token
+{
+public:
+	virtual float getNumber() = 0;
+	virtual char getOperator() = 0;
+};
+class Stack
+{
+private:
+	Token* atoken[MAX];
+	int top;
+public:
+	Stack(int);
+	void push(float);
+	void push(char);
+	Token* pop();
+	int gettop();
+	float otveta(string);
+};
+class Operator : public Token
+{
+private:
+	char oper;
+public:
+	Operator(char);
+	char& back_op()
+	{
+		return oper;
+	}
+	char getOperator();
+	float getNumber()
+	{
+		return 0;
+	}
+};
+class Number :public Token
+{
+private:
+	float fnum;
+public:
+	float& back_nu()
+	{
+		return fnum;
+	}
+	Number(float);
+	float getNumber();
+	char getOperator()
+	{
+		return '0';
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	string a;
+	Stack c(0);
+	cout << "Выражение: "; cin >> a;
+	cout << "\nОТвет  =  " << c.otveta(a);
+	system("pause>nul");
+	return 0;
+}
+Operator::Operator(char a):oper(a)
+{}
+char Operator::getOperator()
+{
+	return oper;
+}
+Number::Number(float a): fnum(a)
+{}
+float Number::getNumber()
+{
+	return fnum;
+}
+Stack::Stack(int a):top(a)
+{}
+void Stack::push(float a)
+{
+	Number* temp=new Number(0);
+	temp->back_nu() = a;
+	atoken[++top] = temp;
+}
+void Stack::push(char a)
+{
+	Operator* temp = new Operator('0');
+	temp->back_op()=a;
+	atoken[++top] = temp;
+}
+Token* Stack::pop()
+{
+	return atoken[top--];
+}
+int Stack::gettop()
+{
+	return top;
+}
+float Stack::otveta(string a)
+{
+	float Pp=0;
+	char cc=0;
+	Stack temp(-1);
+	int flag = 0;
+	for (int i = 0; i<=a.length(); i++)
+	{
+		flag = 0;
+		Pp = 0;
+		cc = '0';
+		if (a[i]>='0' && a[i]<='9')
+			for (;!(a[i] == '+' || a[i] == '-' || a[i] == '*' || a[i] == '/') && i < a.length(); i++)
+			{
+				if (a[i] == '.')
+					flag = 1;
+				if (flag == 0)
+				{
+					Pp = Pp * 10 + a[i] - 48;
+				}
+				else
+				{
+					Pp = Pp + ((a[i] - 48) / 10);
+					flag++;
+				}
+			}
+		temp.push(Pp);
+		if (a[i] == '+' || a[i] == '-' || a[i] == '*' || a[i] == '/')
+		{
+			switch (a[i])
+			{
+			case'+': cc = '+'; break;
+			case'-': cc = '-'; break;
+			case'*': cc = '*'; break;
+			case'/': cc = '/'; break;
+			default:
+				cout << "\n не тот знак";
+				exit(1);
+				break;
+			}
+			temp.push(cc);
+		}
+		if (temp.gettop() >= 3 && i != a.length())
+		{
+			char znac;
+			znac = (temp.pop())->getOperator();
+			char aa;
+			float bb;
+			float cc;
+			cc= (temp.pop())->getNumber();
+			aa= (temp.pop())->getOperator();
+			bb = (temp.pop())->getNumber();
+			if ((znac == '*' || znac == '/'|| znac=='+' || znac=='-') && (aa == '*' || aa == '/'))
+			{
+				switch (aa)
+				{
+				case '*':bb= bb * cc; temp.push(bb); temp.push(znac);break;
+				case '/':bb= bb / cc; temp.push(bb); temp.push(znac); break;
+				}
+				if (znac == '+' || znac == '-')
+				{
+					znac = (temp.pop())->getOperator();
+					cc = (temp.pop())->getNumber();
+					aa = (temp.pop())->getOperator();
+					bb = (temp.pop())->getNumber();
+					switch (aa)
+					{
+					case '+':bb = bb + cc; temp.push(bb); temp.push(znac); break;
+					case '-':bb = bb - cc; temp.push(bb); temp.push(znac); break;
+					}
+				}
+			}else
+				if ((znac == '+' || znac == '-') && (aa == '-' || aa == '+'))
+				{
+					switch (aa)
+					{
+					case '+':bb = bb + cc; temp.push(bb); temp.push(znac); break;
+					case '-':bb = bb - cc; temp.push(bb); temp.push(znac); break;
+					}
+				}
+				else
+				{
+					temp.push(bb);
+					temp.push(aa);
+					temp.push(cc);
+					temp.push(znac);
+				}
+		}
+		if (i == a.length())
+		{
+			char aa;
+			float bb;
+			float cc;
+			cc = (temp.pop())->getNumber();
+			aa = (temp.pop())->getOperator();
+			bb = (temp.pop())->getNumber();
+			switch (aa)
+			{
+			case '*': bb = bb * cc; temp.push(bb);break;
+			case '/': bb = bb / cc; temp.push(bb);break;
+			case '+': bb = bb + cc; temp.push(bb);break;
+			case '-': bb = bb - cc; temp.push(bb);break;
+			}
+			if (temp.gettop() > 1)
+			{
+				cc = (temp.pop())->getNumber();
+				aa = (temp.pop())->getOperator();
+				bb = (temp.pop())->getNumber();
+				switch (aa)
+				{
+				case '*': bb = bb * cc; temp.push(bb); break;
+				case '/': bb = bb / cc; temp.push(bb); break;
+				case '+': bb = bb + cc; temp.push(bb); break;
+				case '-': bb = bb - cc; temp.push(bb); break;
+				}
+			}
+		}
+	}
+	return (temp.pop())->getNumber();
+}
