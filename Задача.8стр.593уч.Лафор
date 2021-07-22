@@ -1,0 +1,87 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+struct link
+{
+	int data;
+	link* next;
+};
+class linklist
+{
+private:
+	link* first;
+	static fstream cc;
+public:
+	linklist()
+	{
+		first = NULL;
+		cc.open("Zadacha_8.txt", ios::in | ios::out | ios::app | ios::binary);
+	}
+	link* back_ret()
+	{
+		return first;
+	}
+	void additem(int d);
+	void display();
+	static void write_l(link* A);
+	static void read_l(linklist* A);
+};
+void linklist::additem(int d)
+{
+	link* newlink = new link;
+	newlink->data = d;
+	newlink->next = first;
+	first = newlink;
+}
+void linklist::display()
+{
+	link* current = first;
+	while (current)
+	{
+		cout <<"Значение: "<< current->data<<" Адрес - "<<current << endl;
+		current = current->next;
+	}
+}
+void linklist::write_l(link* A)
+{
+	if (!cc)
+		cerr << "Невозможно открыть файл";
+	while (A)
+	{
+		cc.write(reinterpret_cast<char*>(&(A->data)), sizeof(A->data));
+		A = A->next;
+	}
+	if (!cc)
+		cerr << "Записать файл";
+}
+void linklist::read_l(linklist* A)
+{
+	if (!cc)
+		cerr << "Невозможно открыть файл";
+	cc.seekg(0);
+	int a;
+	cc.read(reinterpret_cast<char*>(&a), sizeof(int));
+	while (!cc.eof())
+	{
+		A->additem(a);
+		cc.read(reinterpret_cast<char*>(&a), sizeof(int));
+	}
+}
+fstream linklist::cc;
+int main()
+{
+	system("chcp 1251>nul");
+	linklist li;
+	li.additem(25);
+	li.additem(36);
+	li.additem(49);
+	li.additem(64);
+	li.display();
+	cout << endl<<endl;
+	linklist::write_l(li.back_ret());
+	linklist::read_l(&li);
+	li.display();
+	system("pause>nul");
+	return 0;
+}
