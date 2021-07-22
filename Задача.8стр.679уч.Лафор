@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+const int a = 10;
+
+class arrover
+{
+private:
+	int mas[a];
+public:
+	class error
+	{
+	public:
+		int indeks;
+		error(int a):indeks(a)
+		{}
+	};
+	void vvod(int ind, int chislo)
+	{
+		if (ind >= 0 && ind < a)
+			mas[ind] = chislo;
+		else throw error(ind);
+	}
+	void vivod(int ind)
+	{
+		cout <<"\nЭлемент "<<ind+1 <<" - "<< mas[ind];
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	arrover a;
+	try
+	{
+		a.vvod(0, 5);
+		a.vvod(1, 7);
+		a.vivod(0);
+		a.vivod(1);
+		int aa, bb;
+		cin >> aa;
+		cin >> bb;
+		a.vvod(aa, bb);
+		a.vivod(aa);
+	}
+	catch (arrover::error ix)
+	{
+		cout << "Ошибка в индексе - " << ix.indeks;
+	}
+	system("pause>nul");
+	return 0;
+}
