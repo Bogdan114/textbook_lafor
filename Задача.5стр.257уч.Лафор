@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class GOD
+{
+private:
+	int year;
+	int mounth;
+	int day;
+public:
+	GOD():year(0),mounth(0),day(0)
+	{}
+	GOD(int a,int b, int c): year(a),mounth(b),day(c)
+	{}
+	void getgod()
+	{
+		cout << "Введите год - "; cin >> year;
+		cout << "Введите месяц - "; cin >> mounth;
+		cout << "Введите день - "; cin >> day;
+	}
+	void display() const
+	{
+		cout << endl << "Год - " << year;
+		cout << endl << "Месяц - " << mounth;
+		cout << endl << "День - " << day;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	GOD a;
+	a.getgod();
+	a.display();
+	system("pause>nul");
+	return 0;
+}
