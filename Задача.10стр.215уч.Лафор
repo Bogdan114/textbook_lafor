@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+void chet();
+int main()
+{
+	system("chcp 1251>nul");
+	
+	for (int i = 0; i < 10; i++)
+	{
+		chet();
+	}
+	system("pause>nul");
+	return 0;
+}
+void chet()
+{
+	static int o = 1;
+	cout << o << " ";
+	o++;
+}
