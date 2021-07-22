@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+struct MyStruct
+{
+	float fut;
+	int inches;
+};
+inline void vvod(MyStruct& a);
+MyStruct srav(MyStruct a, MyStruct b);
+inline void vivod(MyStruct c);
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	MyStruct a,b,c;
+	vvod(a);
+	vvod(b);
+	c = srav(a, b);
+	vivod(a);
+	vivod(b);
+	vivod(c);
+	system("pause>nul");
+	return 0;
+}
+inline void vvod(MyStruct& a)
+{
+	a.fut = rand() % 10 + 1;
+	a.inches = rand() % 10+1;
+}
+inline void vivod(MyStruct c)
+{
+	cout << "Первая " << c.fut << " Вторая " << c.inches<<endl;
+}
+MyStruct srav(MyStruct a, MyStruct b)
+{
+	if (a.fut < b.fut)
+		return b;
+	else if (a.fut > b.fut)
+		return a;
+	else if (a.inches < b.inches)
+		return b;
+	else if (a.inches > b.inches)
+		return a;
+}
