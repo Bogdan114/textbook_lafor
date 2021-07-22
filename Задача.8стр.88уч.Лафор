@@ -1,0 +1,12 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	cout << "Москва" <<setw(10)<< setfill('.')  << "8425785";
+	system("pause>nul");
+	return 0;
+}
