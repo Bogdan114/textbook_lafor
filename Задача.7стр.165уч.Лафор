@@ -1,0 +1,102 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+struct sotr
+{
+	int numer = 0;
+	float aclad = 0;
+};
+enum etype
+{
+	laborer,
+	secretary,
+	manager,
+	accountant,
+	executive,
+	researcher
+};
+struct data1
+{
+	int day = 0;
+	int month = 0;
+	int year = 0;
+};
+struct sotrudnic
+{
+	sotr a;
+	etype b;
+	data1 c;
+};
+int main()
+{
+	system("chcp 1251>nul");
+	sotrudnic a[3];
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "Введите номер сотрудника  ";
+		cin >> a[i].a.numer;
+		cout << "Введите оклад  ";
+		cin >> a[i].a.aclad;
+		char b = 0;
+		cout << "Дата: ";
+		while (48 <= (b = _getche()) and b <= 57)
+		{
+			b = b - 48;
+			a[i].c.day = a[i].c.day * 10 + b;
+		}
+		b = 0;
+		while (48 <= (b = _getche()) and b <= 57)
+		{
+			b = b - 48;
+			a[i].c.month = a[i].c.month * 10 + b;
+		}
+		b = 0;
+		while (48 <= (b = _getche()) and b <= 57)
+		{
+			b = b - 48;
+			a[i].c.year = a[i].c.year * 10 + b;
+		}
+		b = 0;
+		cout << endl << "Введите первую букву должности сотрудника ";
+		b = _getche();
+		switch (b)
+		{
+		case 'l': a[i].b = laborer; break;
+		case 's': a[i].b = secretary; break;
+		case 'm': a[i].b = manager; break;
+		case 'a': a[i].b = accountant; break;
+		case 'e': a[i].b = executive; break;
+		case 'r': a[i].b = researcher; break;
+
+		default:
+			cout << "Ввели не правильное число" << endl;
+			break;
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "Введите номер сотрудника  ";
+		cout<< a[i].a.numer;
+		cout << "\tВведите оклад  ";
+		cout<< a[i].a.aclad<<endl;
+		char b = 0;
+		cout << "Дата: "<<a[i].c.day<<"/"<< a[i].c.month<<"/"<< a[i].c.year<<endl;
+		cout << "Должность - ";
+		switch (a[i].b)
+		{
+		case 0: cout << "laborer"; break;
+		case 1: cout << "secretary"; break;
+		case 2: cout << "manager"; break;
+		case 3: cout << "accountant"; break;
+		case 4: cout << "executive"; break;
+		case 5: cout << "researcher"; break;
+		}
+		cout << endl;
+	}
+	system("pause>nul");
+	return 0;
+}
