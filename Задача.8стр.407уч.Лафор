@@ -1,0 +1,135 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+class String
+{
+protected:
+	const static int MAX = 20;
+	char str[MAX];
+public:
+	void get_str()
+	{
+		cout << "Введите строку - ";
+		cin >> str;
+	}
+	void show_str()
+	{
+		cout << "Строка - " << str << endl;
+	}
+	String()
+	{
+		str[0] = '\0';
+	}
+};
+class Pstring :public String
+{
+public:
+	void get_str()
+	{
+		cout << "Введите строку - " << endl;
+		int i = 0;
+		while (i < MAX - 1 && 13 != (str[i] = _getche()))
+		{
+			i++;
+		}
+		str[i] = '\0';
+		if (i == MAX - 1)
+			cout << endl << "Строка переполнена" << endl;
+		cout << endl;
+	}
+	void show_str()
+	{
+		cout << endl << "Строка - " << str << endl;
+	}
+};
+class Pstring_2 :public Pstring
+{
+protected:
+public:
+	char* ret_str()
+	{
+		return str;
+	}
+	void left(char* str1, int n)
+	{
+		int i = 0;
+		for (; str[i] != '\0'; i++)
+		{
+		}
+		if (i + n >= MAX)
+			exit(1);
+		else
+		{
+			char A[MAX];
+			for (int j = 0; j < i + n; j++)
+			{
+				if (j < n)
+					A[j] = str1[j];
+				else A[j] = str[j % n];
+			}
+			A[i + n] = '\0';
+			for (int j = 0; A[j] != '\0'; j++)
+				str[j] = A[j];
+			str[i + n] = '\0';
+		}
+	}
+	void mid(char* str1, int s, int n)
+	{
+		int i = 0;
+		for (; str[i] != '\0'; i++)
+		{
+		}
+		if (i + n >= MAX)
+			exit(1);
+		else
+		{
+			char A[MAX];
+			for (int j = 0; j < i+n; j++)
+			{
+				if (!((s<=j)&&(j<s+n)))
+					A[j] = str[j%i];
+				else A[j] = str1[j % n];
+			}
+			A[i + n] = '\0';
+			for (int j = 0; A[j] != '\0'; j++)
+				str[j] = A[j];
+			str[i + n] = '\0';
+		}
+	}
+	void right(char* str1, int n)
+	{
+		int i = 0;
+		for (; str[i] != '\0'; i++)
+		{
+		}
+		if (i + n >= MAX)
+			exit(1);
+		else
+		{
+			char A[MAX];
+			for (int j = 0; j < i + n; j++)
+			{
+				if (j < i)
+					A[j] = str[j];
+				else A[j] = str1[j % n];
+			}
+			A[i + n] = '\0';
+			for (int j = 0; A[j] != '\0'; j++)
+				str[j] = A[j];
+			str[i + n] = '\0';
+		}
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	Pstring_2 A,B;
+	A.get_str();
+	B.get_str();
+	A.right(B.ret_str(), 3);
+	A.show_str();
+	system("pause>nul");
+	return 0;
+}
