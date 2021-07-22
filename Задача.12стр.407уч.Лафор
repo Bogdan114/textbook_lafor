@@ -1,0 +1,188 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+class bab
+{
+protected:
+	int funt;
+	int shiling;
+	int peni;
+public:
+	bab():funt(0),shiling(0),peni(0)
+	{}
+	void get()
+	{
+		char a;
+		cout << "Введите деньги  -  ";
+		a = 0;
+		a = _getche();
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			funt = funt * 10 + a;
+		}
+		a = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			shiling = shiling * 10 + a;
+		}
+		a = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			peni = peni * 10 + a;
+		}
+		a = 0;
+	}
+	void show()
+	{
+		cout << endl << "J" << funt << "." << shiling << "." << peni;
+	}
+	bab operator+ (bab b)
+	{
+		bab c;
+		c.funt = funt + b.funt;
+		c.shiling = shiling + b.shiling;
+		c.peni = peni + b.peni;
+
+		c.shiling = c.shiling + c.peni / 12;
+		c.peni = c.peni % 12;
+
+		c.funt = c.funt + c.shiling / 20;
+		c.shiling = c.shiling % 20;
+		return c;
+	}
+	bab operator* (bab b)
+	{
+		bab c;
+		c.funt = funt * b.funt;
+		c.shiling = shiling * b.shiling;
+		c.peni = peni * b.peni;
+
+		c.shiling = c.shiling + c.peni / 12;
+		c.peni = c.peni % 12;
+
+		c.funt = c.funt + c.shiling / 20;
+		c.shiling = c.shiling % 20;
+	}
+	bab operator- (bab b)
+	{
+		int sumA, sumB;
+		sumA = peni + shiling * 12 + funt*20*12;
+		sumB = b.peni + b.shiling * 12 + b.funt * 20 * 12;
+		sumA = sumA - sumB;
+		bab c;
+		c.funt = sumA / 240;
+		sumA = sumA % 240;
+		c.shiling = sumA / 12;
+		sumA = sumA % 12;
+		c.peni = sumA;
+		return c;
+	}
+	bab operator/ (bab b)
+	{
+		int sumA, sumB;
+		sumA = peni + shiling * 12 + funt * 20 * 12;
+		sumB = b.peni + b.shiling * 12 + b.funt * 20 * 12;
+		sumA = sumA / sumB;
+		bab c;
+		c.funt = sumA / 240;
+		sumA = sumA % 240;
+		c.shiling = sumA / 12;
+		sumA = sumA % 12;
+		c.peni = sumA;
+		return c;
+	}
+	int fut_ret()
+	{
+		return funt;
+	}
+	int shiling_ret()
+	{
+		return shiling;
+	}
+	int peni_ret()
+	{
+		return peni;
+	}
+};
+class bab_2
+{
+protected:
+	bab A;
+	int ch;
+	int znam;
+public:
+	bab_2():ch(0),znam(0)
+	{}
+	void get()
+	{
+		char a;
+		A.get();
+		a = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			ch = ch * 10 + a;
+		}
+		a = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			znam = znam * 10 + a;
+		}
+		a = 0;
+	}
+	void show()
+	{
+		A.show();
+		cout << "  " << ch << "/" << znam;
+	}
+	bab_2 operator+ (bab_2 b)
+	{
+		bab_2 c;
+		c.A = A + b.A;
+		c.ch = ch * b.znam + znam * b.ch;
+		c.znam = b.znam * znam;
+		return c;
+	}
+	bab_2 operator- (bab_2 b)
+	{
+		bab_2 c;
+		c.A = A - b.A;
+		c.ch = ch * b.znam - znam * b.ch;
+		c.znam = b.znam * znam;
+		return c;
+	}
+	bab_2 operator* (bab_2 b)
+	{
+		bab_2 c;
+		c.A = A * b.A;
+		c.ch = ch * b.ch;
+		c.znam = b.znam * znam;
+		return c;
+	}
+	bab_2 operator/ (bab_2 b)
+	{
+		bab_2 c;
+		c.A = A / b.A;
+		c.ch = ch * b.znam;
+		c.znam = b.ch * znam;
+		return c;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	bab_2 a, b,c;
+	a.get();
+	b.get();
+	c = a + b;
+	c.show();
+	system("pause>nul");
+	return 0;
+}
