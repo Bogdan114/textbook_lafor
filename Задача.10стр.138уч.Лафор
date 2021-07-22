@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	float vclad;
+	int let;
+	float proc;
+	float vclad1;
+	cout << "Размер вклад: " << endl;
+	cin >> vclad;
+	cout << "Размер желаемого вклада: " << endl;
+	cin >> vclad1;
+	cout << "Кол-во процентов: " << endl;
+	cin >> proc;
+	for (int i=1; vclad < vclad1;i++)
+	{
+		vclad = vclad + (vclad * proc / 100);
+		let = i;
+	}
+	cout << "Вклад спустя " << let << "  =  " << vclad;
+	system("pause>nul");
+	return 0;
+}
