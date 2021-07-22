@@ -1,0 +1,112 @@
+#include <iostream>
+#include <cstdlib>
+#include <string>
+
+using namespace std;
+
+class publication
+{
+private:
+	string name;
+	float chena;
+public:
+	virtual void getdata()
+	{
+		cout << "Введите название книги: ";
+		cin.ignore();
+		getline(cin, name);
+		cout << "Введите цену книги: ";
+		cin >> chena;
+	}
+	virtual void putdata()
+	{
+		cout << "Имя - " << name << endl << "Цена - " << chena << endl;
+	}
+	publication()
+	{
+		name = "N/A";
+		chena = 0;
+	}
+	virtual ~publication()
+	{
+		cout << "имя - " << endl;
+		delete this;
+	}
+};
+class book :public publication
+{
+private:
+	int list1;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		cout << "Кол-во листов - "; cin >> list1;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		cout << "Кол-во листов - " << list1 << endl;
+	}
+	book() :publication(), list1(0)
+	{}
+	~book()
+	{
+		publication::~publication();
+		delete this;
+	}
+};
+class booklisen :public publication
+{
+private:
+	float type;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		cout << "Время - "; cin >> type;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		cout << "Время - " << type << endl;
+	}
+	booklisen() :publication(), type(0)
+	{}
+	~booklisen()
+	{
+		publication::~publication();
+		delete this;
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	char vibor;
+	publication* a[100];
+	int i = 0;
+	do {
+		cout << "Введи А если Аудио книга и В если бумажная книга     "; cin >> vibor;
+		if (vibor == 'A')
+		{
+			a[i] = new booklisen;
+			a[i]->getdata();
+			i++;
+		}
+		else
+		{
+			a[i] = new book;
+			a[i]->getdata();
+			i++;
+		}
+		cout << "Введите 'y' если хотите продолжить"; cin >> vibor;
+	} while (vibor == 'y');
+	i--;
+	for (; 0 <= i; i--)
+	{
+		a[i]->putdata();
+	}
+	system("pause>nul");
+	return 0;
+}
