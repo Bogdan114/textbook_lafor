@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cstdlib>
+#include <algorithm>
+#include <vector>
+#include <functional>
+
+using namespace std;
+
+bool sort_str(char* a, char* b)
+{
+	int i = 0;
+	if (a[i] < b[i])
+		return true;
+	else return false;
+}
+
+int main()
+{
+	system("chcp 1251>nul");
+	char str[3][10];
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "Слово " << i + 1 << ": "; cin >> str[i];
+	}
+	vector<char*> v1;
+	for (int i = 0; i < 3; i++)
+	{
+		v1.push_back(str[i]);
+	}
+	sort(v1.begin(), v1.end(),sort_str);
+	for (int i = 0; i < v1.size(); i++)
+	{
+		cout << v1[i] << endl;
+	}
+	system("pause>nul");
+	return 0;
+}
