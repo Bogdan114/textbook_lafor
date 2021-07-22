@@ -1,0 +1,75 @@
+#include <iostream>
+#include <cstdlib>
+#include<cstring>
+#pragma warning(disable : 4996)
+using namespace std;
+
+const int MAX = 6;
+class str
+{
+public:
+	char stroca[MAX];
+	int top;
+	class error{};
+	class error1{};
+	str()
+	{
+		stroca[0] = '\0';
+	}
+	str(char* a)
+	{
+		top = strlen(a);
+		if (top >= MAX) throw str::error1();
+		else
+		strcpy(stroca, a);
+	}
+	friend str& operator+ (str& a, str& b);
+};
+str& operator+ (str& a, str& b)
+{
+	str c;
+	if (a.top + b.top < MAX)
+	{
+		int i;
+		for (i = 0; i < a.top; i++)
+		{
+			c.stroca[i] = a.stroca[i];
+		}
+		for (int j = 0; j < b.top; j++, i++)
+		{
+			c.stroca[i] = b.stroca[j];
+		}
+		c.stroca[i] = '\0';
+	}
+	else
+	{
+		throw str::error();
+	}
+	return c;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	char a[MAX+2];
+	char c[MAX+2];
+	str sum;
+	try
+	{
+		cin >> a;
+		cin >> c;
+		str b(a);
+		str b1(c);
+		sum = b + b1;
+	}
+	catch (str::error)
+	{
+		cout << "Переполнение строки при сложении";
+	}
+	catch (str::error1)
+	{
+		cout << "Переполнение строки при иницилизации";
+	}
+	cout << "\n" << sum.stroca;
+	system("pause>nul");
+	return 0;
+}
