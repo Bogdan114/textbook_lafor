@@ -1,0 +1,67 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+const int MAX = 40;
+class money
+{
+private:
+	char str[MAX];
+public:
+	money();
+	void round();
+	void get();
+	void show();
+};
+money::money()
+{
+	str[0] = '\0';
+}
+void money::get()
+{
+	cout << "Введите кол-во денег - "; cin >> str;
+}
+void money::show()
+{
+	cout << endl << str;
+}
+void money::round()
+{
+	for (int i = 0; i < MAX; i++)
+	{
+		int j;
+		if (str[i] == '.')
+		{
+			if (53 <= str[i + 1] && str[i + 1] <= 57)
+			{
+				for (int p = 1; str[i + p] != '\0'; p++)
+				{
+					str[i + p] = '0';
+				}
+				for (j = 1; str[i - j] == 57 && i != j; j++)
+				{
+					str[i - j] = '0';
+				}
+				if (i!=j)
+					str[i - j] = str[i - j] + 1;
+				else
+				{
+					char swap;
+					swap = str[i];
+					str[i] = str[i + 1];
+					str[i + 1] = swap;
+				}
+			}
+		}
+	}
+}
+int main()
+{
+	system("chcp 1251>nul");
+	money a;
+	a.get();
+	a.round();
+	a.show();
+	system("pause>nul");
+	return 0;
+}
