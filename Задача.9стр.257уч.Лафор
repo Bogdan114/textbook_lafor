@@ -1,0 +1,62 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+class drob
+{
+private:
+	int chisl;
+	int znam;
+public:
+	drob() : chisl(0),znam(0)
+	{}
+	void getdrob()
+	{
+		chisl = 0;
+		znam = 0;
+		char a = 0;
+		cout << "Введите дробь в формате a/b - ";
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			chisl = chisl * 10 + a;
+		}
+		a = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			znam = znam * 10 + a;
+		}
+	}
+	void dis()
+	{
+		cout << endl << "Дробь = " << chisl << "/" << znam << endl;
+	}
+	drob plus(drob a);
+};
+drob drob::plus(drob a)
+{
+	drob c;
+	c.chisl = chisl * a.znam + a.chisl * znam;
+	c.znam = znam * a.znam;
+	return c;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	drob a, b, c;
+	char z;
+	do {
+		a.getdrob();
+		b.getdrob();
+		c = a.plus(b);
+		c.dis();
+		cout << "Введите 'Y' для продолжения   ";
+		z = _getche();
+		cout << endl;
+	} while (z == 'Y');
+	system("pause>nul");
+	return 0;
+}
