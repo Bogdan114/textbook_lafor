@@ -1,0 +1,64 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class mas_dv
+{
+protected:
+	int** a;
+	int ad;
+	int bd;
+public:
+	mas_dv();
+	mas_dv(int);
+	int operator[](int);
+};
+mas_dv::mas_dv()
+{
+	a = NULL;
+}
+mas_dv::mas_dv(int n)
+{
+	int m;
+	for (int i = 1; i < (n / 2 + 1); i++)
+	{
+		if (n % i == 0)
+			m = i;
+	}
+	n = n / m;
+	ad = m;
+	bd = n;
+	a = new int* [n];
+	for (int i = 0; i < n; i++)
+	{
+		a[i] = new int[m];
+		for (int j = 0; j < m; j++)
+		{
+			a[i][j] = rand() % 20 + 1;
+			cout << a[i][j] << "   ";
+		}
+		cout << endl;
+	}
+}
+int mas_dv::operator[](int adr)
+{
+	int m_ad_1 = adr/ad;
+	int m_ad_2 = adr%ad;
+	return a[m_ad_1][m_ad_2];
+}
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	mas_dv a(30);
+	cout << endl;
+	cout << endl;
+	cout << a[20];
+	cout << endl;
+	cout << a[1];
+	cout << endl;
+	cout << a[29];
+	system("pause>nul");
+	return 0;
+}
