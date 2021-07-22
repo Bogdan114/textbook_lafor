@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class Int
+{
+private:
+	int a;
+public:
+	Int() : a(0)
+	{	}
+	Int(int b) :a(b)
+	{	}
+	void getInt()
+	{
+		cout << "Введите а = "<<endl; cin >> a;
+	}
+	void show()
+	{
+		cout << endl << " a = " << a;
+	}
+	Int Plus(Int a1);
+};
+Int Int::Plus(Int a1)
+{
+	Int c;
+	c.a = a1.a + a;
+	return c;
+}
+
+int main()
+{
+	system("chcp 1251>nul");
+	Int a,b,c;
+	a.getInt();
+	b.getInt();
+	c = a.Plus(b);
+	c.show();
+	b.show();
+	a.show();
+	system("pause>nul");
+	return 0;
+}
