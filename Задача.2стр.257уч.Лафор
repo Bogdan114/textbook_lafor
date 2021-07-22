@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+class Mashina
+{
+private:
+	unsigned int count;
+	double cost;
+public:
+	Mashina() : count(0), cost(0)
+	{	}
+	void pay()
+	{
+		count++;
+		cost = cost + 0.5;
+	}
+	void nopay()
+	{
+		count++;
+	}
+	void display() const
+	{
+		cout <<endl << "ККол-во машин = " << count << endl << "Выручка = " << cost << endl;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	char a;
+	Mashina a1;
+	cout << "Введите 1, за платный авто и 2 за бесплатый. А Esc чтоб выйти" << endl;
+	do
+	{
+
+		a = _getche();
+		if (a - 48 == 1)
+		{
+			a1.pay();
+		}
+		if (a - 48 == 2)
+		{
+			a1.nopay();
+		}
+	} while (a != 27);
+	a1.display();
+	system("pause>nul");
+	return 0;
+}
