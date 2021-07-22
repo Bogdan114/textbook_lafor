@@ -1,0 +1,285 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+const int O = 40;
+class money
+{
+private:
+	char money1[O];
+	char ustring[O];
+public:
+	long double mstold()
+	{
+		char money2[O];
+		int j = 0;
+		for (int i = 0; i < O and money1[i] != '\0'; i++)
+		{
+			if (48 <= money1[i] and money1[i] <= 57)
+			{
+				money2[j] = money1[i];
+				j++;
+			}
+		}
+		money2[j] = '\0';
+		long double a = 0;
+		for (int i = 0; money2[i] != '\0'; i++)
+		{
+			a = a * 10 + (money2[i] - 48);
+		}
+		return a;
+	}
+	money operator + (money a)
+	{
+		money b;
+		long double c = 0;
+		c = this->mstold() + a.mstold();
+		b.outstream(c);
+		return b;
+	}
+	money operator - (money a)
+	{
+		money b;
+		long double c = 0;
+		c = this->mstold() - a.mstold();
+		b.outstream(c);
+		return b;
+	}
+	money operator * (long double a)
+	{
+		money b;
+		long double c = 0;
+		c = this->mstold() * a;
+		b.outstream(c);
+		return b;
+	}
+	money operator / (long double a)
+	{
+		money b;
+		long double c = 0;
+		c = this->mstold() / a;
+		b.outstream(c);
+		return b;
+	}
+	money operator / (money a)
+	{
+		money b;
+		long double c = 0;
+		c = this->mstold() / a.mstold();
+		b.outstream(c);
+		return b;
+	}
+	void outstream(long double a)
+	{
+		int i = 0;
+		long long c = static_cast<long long>(a);
+		for (; c != 0;)
+		{
+			ustring[i] = c % 10 + 48;
+			c = c / 10;
+			i++;
+		}
+		char swap;
+		ustring[i] = '\0';
+		i = i - 1;
+		for (int j = 0; j < i; j++, i--)
+		{
+			swap = ustring[i];
+			ustring[i] = ustring[j];
+			ustring[j] = swap;
+		}
+	}
+	void get_money()
+	{
+		cout << "Введите денежную сумму - "; cin >> money1;
+	}
+	void show()
+	{
+		cout << ustring << endl;
+	}
+	money ()
+	{
+		money1[0] = '\0';
+		ustring[0] = '\0';
+	}
+};
+class ster
+{
+private:
+	long funt;
+	int shiling;
+	int pens;
+public:
+	ster();
+	ster(double);
+	ster(long, int, int);
+	void get_ster();
+	void show();
+	ster operator+(ster);
+	ster operator-(ster);
+	ster operator*(double);
+	ster operator/(double);
+	ster operator/(ster);
+	ster(money);
+	int ret_fut();
+	int ret_shi();
+	int ret_pen();
+	long double moneyC();
+};
+int ster::ret_fut()
+{
+	return funt;
+}
+int ster::ret_shi()
+{
+	return shiling;
+}
+int ster::ret_pen()
+{
+	return pens;
+}
+ster::ster() : funt(0), shiling(0), pens(0)
+{}
+ster::ster(double a)
+{
+	funt = static_cast<long>(a);
+	shiling = static_cast<int>((a - static_cast<int>(a)) * 100) / 5;
+	pens = static_cast<int>((a - static_cast<int>(a)) * 100) % 5;
+}
+ster::ster(long a, int b, int c) :funt(a), shiling(b), pens(c)
+{}
+void ster::get_ster()
+{
+	char a;
+	cout << "Введите сумму (J9.19.11)  -  ";
+	a = _getche();
+	while ((48 <= (a = _getche()) && a <= 57))
+	{
+		a = a - 48;
+		funt = funt * 10 + a;
+	}
+	a = 0;
+	while ((48 <= (a = _getche()) && a <= 57))
+	{
+		a = a - 48;
+		shiling = shiling * 10 + a;
+	}
+	a = 0;
+	while ((48 <= (a = _getche()) && a <= 57))
+	{
+		a = a - 48;
+		pens = pens * 10 + a;
+	}
+	cout << endl;
+}
+void ster::show()
+{
+	cout << "J" << funt << "." << shiling << "." << pens << endl;
+}
+ster ster::operator+(ster a)
+{
+	ster b;
+	b.funt = funt + a.funt;
+	b.shiling = shiling + a.shiling;
+	b.pens = pens + a.pens;
+
+	b.shiling = b.shiling + b.pens / 12;
+	b.pens = b.pens % 12;
+
+	b.funt = b.funt + b.shiling / 20;
+	b.shiling = b.shiling % 20;
+	return b;
+}
+ster ster::operator-(ster a)
+{
+	ster b;
+	b.funt = funt - a.funt;
+	b.shiling = shiling - a.shiling;
+	b.pens = pens - a.pens;
+
+	b.shiling = b.shiling - b.pens / 12;
+	b.pens = b.pens % 12;
+
+	b.funt = b.funt - b.shiling / 20;
+	b.shiling = b.shiling % 20;
+	return b;
+}
+ster ster::operator*(double a)
+{
+	ster b(a);
+	ster c;
+	c.funt = b.funt * funt;
+	c.shiling = b.shiling * shiling;
+	c.pens = b.pens * pens;
+
+	c.shiling = c.shiling + c.pens / 12;
+	c.pens = c.pens % 12;
+
+	c.funt = c.funt + c.shiling / 20;
+	c.shiling = c.shiling % 20;
+	return c;
+}
+ster ster::operator/(double a)
+{
+	ster b(a);
+	ster c;
+	c.funt = funt / b.funt;
+	c.shiling = shiling / b.shiling;
+	c.pens = pens / b.pens;
+
+	c.shiling = c.shiling + c.pens / 12;
+	c.pens = c.pens % 12;
+
+	c.funt = c.funt + c.shiling / 20;
+	c.shiling = c.shiling % 20;
+	return c;
+}
+ster ster::operator/(ster a)
+{
+	ster b;
+	b.funt = funt / a.funt;
+	b.shiling = shiling / a.shiling;
+	b.pens = pens / a.pens;
+
+	b.shiling = b.shiling + b.pens / 12;
+	b.pens = b.pens % 12;
+
+	b.funt = b.funt + b.shiling / 20;
+	b.shiling = b.shiling % 20;
+	return b;
+}
+ster::ster(money a)
+{
+	long long b = static_cast<long long>(a.mstold());
+	funt = b / 50;
+	b = b % 50;
+	shiling = b / 2.5;
+	b = b % 3;
+	pens = b / 8;
+}
+long double ster::moneyC()
+{
+	long double b = 0;
+	b = funt * 50 + b;
+	b = shiling * 2.5 + b;
+	b = pens / 8 + b;
+	return b;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	//money a;
+	//a.get_money();
+	//ster b=a;
+	//b.show();
+	ster a;
+	a.get_ster();
+	money b;
+	b.outstream(a.moneyC());
+	b.show();
+	system("pause>nul");
+	return 0;
+}
