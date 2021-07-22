@@ -1,0 +1,52 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+const int Limit = 100;
+
+class seif_mas
+{
+private:
+	int mas[Limit];
+public:
+	seif_mas()
+	{
+		for (int i = 0; i < Limit; i++)
+			mas[i] = 0;
+	}
+	void putel(int i, int temp)
+	{
+		if (i >= 0 and i <= Limit - 1)
+		{
+			mas[i] = temp;
+		}
+		else cout << "Индекс вне места" << endl;
+	}
+	void cout_mas( int i )
+	{
+		cout << "Индекс - " << i << " Значение - " << mas[i] << endl;
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	seif_mas POP;
+	char a = 0;
+	int i = 0;
+	int temp = 0;
+	while (27 != (a = _getche()))
+	{
+		i = 0;
+		temp = 0;
+		cout << "Введите индекс - "; cin >> i;
+		cout << "Введите значение - "; cin >> temp;
+		POP.putel(i, temp);
+		POP.cout_mas(i);
+		cout << endl << "Введите ESC" << endl;
+	}
+	system("pause>nul");
+	return 0;
+}
