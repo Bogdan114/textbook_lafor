@@ -1,0 +1,69 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+const int p = 7;
+const int LEN = 100;
+class String_1
+{
+private:
+	char** str;
+public:
+	String_1();
+	~String_1();
+	void order(int i, int j);
+	void order_full();
+	void show();
+};
+String_1::String_1()
+{
+	str = new char* [p];
+	for (int i = 0; i < p; i++)
+	{
+		str[i] = new char[LEN];
+		cin.ignore();
+		cin.getline(str[i],LEN);
+	}
+}
+String_1::~String_1()
+{
+	for (int i = 0; i < p; i++)
+	{
+		cout << "Адрес удаления - " << str[i] << endl;
+		delete[] str[i];
+	}
+	cout << "Адрес удаления" <<str << endl;
+	delete[]str;
+}
+void String_1::order(int i,int j)
+{
+	char* swap;
+	if (str[i] > str[j])
+	{
+		swap = str[i];
+		str[i] = str[j];
+		str[j] = swap;
+	}
+}
+void String_1::order_full()
+{
+	for(int i=0;i<p;i++)
+		for (int j = 0; j < p; j++)
+		{
+			this->order(i,j);
+		}
+}
+void String_1::show()
+{
+	for (int i = 0; i < p; i++)
+		cout << str[i] << endl;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	String_1 a;
+	a.order_full();
+	a.show();
+	system("pause>nul");
+	return 0;
+}
