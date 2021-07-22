@@ -1,0 +1,59 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+int power(int a, int b);
+char power(char a, int b);
+float power(float a, int b);
+long power(long a, int b);
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	int b = rand() % 10 + 1;
+	int a = rand() % 10 + 1;
+	cout << "Int a= " << a << " int b= " << b << " Power= " << power(a, b) <<endl;
+	b = rand() % 10 + 1;
+	char a1 = rand() % 10 + 1;
+	cout << "Char a= " << a1 << " int b= " << b <<" Power= " << power(a1, b) <<endl;
+	b = rand() % 10 + 1;
+	float a2 = rand() % 10 + 1;
+	cout << "float a= " << a2 << " int b= " << b << " Power= " << power(a2, b)<<endl;
+	b = rand() % 10 + 1;
+	long a3 = rand() % 10 + 1;
+	cout << "long a= " << a2 << " int b= " << b << " Power= " << power(a3, b)<<endl;
+	system("pause>nul");
+	return 0;
+}
+int power(int a, int b)
+{
+	for (int i = 1; i < b; i++)
+	{
+		a = a * a;
+	}
+	return a;
+}
+char power(char a, int b)
+{
+	for (int i = 1; i < b; i++)
+	{
+		a = a * a;
+	}
+	return a;
+}
+float power(float a, int b)
+{
+	for (int i = 1; i < b; i++)
+	{
+		a = a * a;
+	}
+	return a;
+}
+long power(long a, int b)
+{
+	for (int i = 1; i < b; i++)
+	{
+		a = a * a;
+	}
+	return a;
+}
