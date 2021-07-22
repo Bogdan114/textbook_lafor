@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+
+const int O = 40;
+class money
+{
+private:
+	char money1[O];
+public:
+	long double mstold()
+	{
+		char money2[O];
+		int j = 0;
+		for (int i = 0; i < O and money1[i]!='\0'; i++)
+		{
+			if (48 <= money1[i] and money1[i] <= 57)
+			{
+				money2[j] = money1[i];
+				j++;
+			}
+		}
+		money2[j] = '\0';
+		long double a = 0;
+		for (int i = 0; money2[i] != '\0'; i++)
+		{
+			a = a * 10 + (money2[i] - 48);
+		}
+		return a;
+	}
+	void get_money()
+	{
+		cout << "Введите денежную сумму - "; cin >> money1;
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	money a[2];
+	long double b[2];
+	for (int i = 0; i < 2; i++)
+	{
+		a[i].get_money();
+		b[i] = a[i].mstold();
+		cout << setiosflags(ios::fixed)
+			<< setiosflags(ios::showpoint) << b[i] <<endl;
+	}
+	system("pause>nul");
+	return 0;
+}
