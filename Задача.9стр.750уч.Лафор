@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <functional>
+#include <algorithm>
+
+using namespace std;
+const int b = 10;
+void display(string* a)
+{
+	for (int i = 0; i < b; i++)
+	{
+		cout << i + 1 << " - " << a[i] << endl;
+	}
+}
+
+int main()
+{
+	system("chcp 1251>nul");
+	string a[b] = { "Богдан","Петя","Василий","Григорий","Рома","Алиса","Марина","Люда","Оксана","Ольга" };
+	display(a);
+	string find_str = { "Рома" };
+	string* temp;
+	temp = find_if(a, a + b, bind2nd(equal_to<string>(), find_str));
+	int temp_it;
+	for (int i = 0; i < b; i++)
+	{
+		if (*temp == a[i])
+		{
+			temp_it = i;
+		}
+	}
+
+	cout << endl << endl << "Адрес - " << temp_it+1 << "\tСтрока - " << *temp;
+	system("pause>nul");
+	return 0;
+}
