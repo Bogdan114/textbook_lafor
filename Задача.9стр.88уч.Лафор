@@ -1,0 +1,13 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	int a = rand() % 10 + 1, b = rand() % 10 + 1, c = rand() % 10 + 1,d = rand() % 10 + 1;
+	cout << a * d + b * c << "/" << b * d;
+	system("pause>nul");
+	return 0;
+}
