@@ -1,0 +1,14 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	cout << setw(5) << "1990" << setw(6) << "135" << endl
+		<< setw(5) << "1991" << setw(6) << "7290" << endl
+		<< setw(5) << "1992" << setw(6) << "11300" << endl;
+	system("pause>nul");
+	return 0;
+}
