@@ -1,0 +1,117 @@
+#include <iostream>	
+#include <cstdlib>
+#include <string>
+#include <conio.h>
+
+using namespace std;
+
+class publication
+{
+protected:
+	string name;
+	float chena;
+public:
+	void getdata()
+	{
+		cout << "Введите название книги: ";
+		cin.ignore();
+		getline(cin, name);
+		cout << "Введите цену книги: ";
+		cin >> chena;
+	}
+	void putdata()
+	{
+		cout << "Имя - " << name << endl << "Цена - " << chena << endl;
+	}
+	publication()
+	{
+		name = "N/A";
+		chena = 0;
+	}
+};
+class publication2:public publication
+{
+protected:
+	int year;
+	int month;
+	int day;
+public:
+	void getdata()
+	{
+		char a;
+		publication::getdata();
+		cout << "Введите дату (год,месяц,день)- ";
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			year = year * 10 + a;
+		}
+		a = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			month = month * 10 + a;
+		}
+		a = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			day = day * 10 + a;
+		}
+	}
+	void putdata()
+	{
+		publication::putdata();
+		cout << "Дата - " << year << ":" << month << ":" << day << endl;
+	}
+	publication2():publication::publication(),year(0),month(0),day(0)
+	{}
+};
+class book :public publication2
+{
+private:
+	int list1;
+public:
+	void getdata()
+	{
+		publication2::getdata();
+		cout << "Кол-во листов - "; cin >> list1;
+	}
+	void putdata()
+	{
+		publication2::putdata();
+		cout << "Кол-во листов - " << list1 << endl;
+	}
+	book() :publication2(), list1(0)
+	{}
+};
+class booklisen :public publication2
+{
+private:
+	float type;
+public:
+	void getdata()
+	{
+		publication2::getdata();
+		cout << "Время - "; cin >> type;
+	}
+	void putdata()
+	{
+		publication2::putdata();
+		cout << "Время - " << type << endl;
+	}
+	booklisen() :publication2(), type(0)
+	{}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	book A;
+	booklisen B;
+	A.getdata();
+	B.getdata();
+	A.putdata();
+	B.putdata();
+	system("pause>nul");
+	return 0;
+}
