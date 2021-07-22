@@ -1,0 +1,297 @@
+#include <iostream>
+#include<cstdlib>
+using namespace std;
+
+template <class ti>
+class frac
+{
+private:
+	ti chisl;
+	ti znam;
+public:
+	class error{};
+
+	friend ostream& operator<<(ostream&, frac<int>&);
+	friend ostream& operator<<(ostream&, frac<short>&);
+	friend ostream& operator<<(ostream&, frac<char>&);
+	friend ostream& operator<<(ostream&, frac<long>&);
+
+	friend istream& operator>>(istream&, frac<int>&);
+	friend istream& operator>>(istream&, frac<short>&);
+	friend istream& operator>>(istream&, frac<char>&);
+	friend istream& operator>>(istream&, frac<long>&);
+
+	friend frac<ti>& operator+ (frac<ti>&, frac<ti>&);
+	friend frac<ti>& operator- (frac<ti>&, frac<ti>&);
+	friend frac<ti>& operator* (frac<ti>&, frac<ti>&);
+	friend frac<ti>& operator/ (frac<ti>&, frac<ti>&);
+};
+istream& operator>>(istream& aa, frac<int>& b)
+{
+	char a;
+	aa >> b.chisl >> a >> b.znam;
+	if (b.znam == 0) throw frac<int>::error();
+	return aa;
+}
+istream& operator>>(istream& aa, frac<short>& b)
+{
+	char a;
+	aa >> b.chisl >> a >> b.znam;
+	if (b.znam == 0) throw frac<short>::error();
+	return aa;
+}
+istream& operator>>(istream& aa, frac<char>& b)
+{
+	char a;
+	aa >> b.chisl >> a >> b.znam;
+	if (b.znam == '0') throw frac<char>::error();
+	return aa;
+}
+istream& operator>>(istream& aa, frac<long>& b)
+{
+	char a;
+	aa >> b.chisl >> a >> b.znam;
+	if (b.znam == 0) throw frac<long>::error();
+	return aa;
+}
+
+ostream& operator<<(ostream& aa, frac<int>& b)
+{
+	aa << b.chisl << '/' << b.znam;
+	return aa;
+}
+ostream& operator<<(ostream& aa, frac<short>& b)
+{
+	aa << b.chisl << '/' << b.znam;
+	return aa;
+}
+ostream& operator<<(ostream& aa, frac<char>& b)
+{
+	aa << b.chisl << '/' << b.znam;
+	return aa;
+}
+ostream& operator<<(ostream& aa, frac<long>& b)
+{
+	aa << b.chisl << '/' << b.znam;
+	return aa;
+}
+
+frac<int>& operator+ (frac<int>& a, frac<int>& b)
+{
+	frac<int> c;
+	c.chisl = a.chisl * b.znam + b.chisl * a.znam;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<char>& operator+ (frac<char>& a, frac<char>& b)
+{
+	frac<char> c;
+	c.chisl = a.chisl * b.znam + b.chisl * a.znam;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<short>& operator+ (frac<short>& a, frac<short>& b)
+{
+	frac<short> c;
+	c.chisl = a.chisl * b.znam + b.chisl * a.znam;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<long>& operator+ (frac<long>& a, frac<long>& b)
+{
+	frac<long> c;
+	c.chisl = a.chisl * b.znam + b.chisl * a.znam;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+
+frac<int>& operator- (frac<int>& a, frac<int>& b)
+{
+	frac<int> c;
+	c.chisl = a.chisl * b.znam - b.chisl * a.znam;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<char>& operator- (frac<char>& a, frac<char>& b)
+{
+	frac<char> c;
+	c.chisl = a.chisl * b.znam - b.chisl * a.znam;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<short>& operator- (frac<short>& a, frac<short>& b)
+{
+	frac<short> c;
+	c.chisl = a.chisl * b.znam - b.chisl * a.znam;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<long>& operator- (frac<long>& a, frac<long>& b)
+{
+	frac<long> c;
+	c.chisl = a.chisl * b.znam - b.chisl * a.znam;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+
+frac<int>& operator* (frac<int>& a, frac<int>& b)
+{
+	frac<int> c;
+	c.chisl = a.chisl * b.chisl;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<char>& operator* (frac<char>& a, frac<char>& b)
+{
+	frac<char> c;
+	c.chisl = a.chisl * b.chisl;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<short>& operator* (frac<short>& a, frac<short>& b)
+{
+	frac<short> c;
+	c.chisl = a.chisl * b.chisl;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+frac<long>& operator* (frac<long>& a, frac<long>& b)
+{
+	frac<long> c;
+	c.chisl = a.chisl * b.chisl;
+	c.znam = a.znam * b.znam;
+	return c;
+}
+
+frac<int>& operator/ (frac<int>& a, frac<int>& b)
+{
+	frac<int> c;
+	c.chisl = a.chisl * b.znam;
+	c.znam = a.znam * b.chisl;
+	return c;
+}
+frac<char>& operator/ (frac<char>& a, frac<char>& b)
+{
+	frac<char> c;
+	c.chisl = a.chisl * b.znam;
+	c.znam = a.znam * b.chisl;
+	return c;
+}
+frac<short>& operator/ (frac<short>& a, frac<short>& b)
+{
+	frac<short> c;
+	c.chisl = a.chisl * b.znam;
+	c.znam = a.znam * b.chisl;
+	return c;
+}
+frac<long>& operator/ (frac<long>& a, frac<long>& b)
+{
+	frac<long> c;
+	c.chisl = a.chisl * b.znam;
+	c.znam = a.znam * b.chisl;
+	return c;
+}
+
+int main()
+{
+	system("chcp 1251>nul");
+
+	frac<int> int_a;
+	frac<int> int_b;
+	frac<int> int_c;
+	start:
+	cout << "int \n";
+	try
+	{
+		cin >> int_a;
+		cin >> int_b;
+		int_c = (int_a + int_b);
+		cout << "+ " << int_c;
+		int_c = (int_a - int_b);
+		cout << "- " << int_c;
+		int_c = (int_a * int_b);
+		cout << "* " << int_c;
+		int_c = (int_a / int_b);
+		cout << "/ " << int_c;
+	}
+	catch (frac<int>::error)
+	{
+		cout << "Знаменатель не равен 0\n Введите повторно\n";
+		goto start;
+	}
+
+	frac <short> short_a;
+	frac <short> short_b;
+	frac <short> short_c;
+	start_s:
+	cout << "\nshort\n";
+	try 
+	{
+		cin >> short_a;
+		cin >> short_b;
+		short_c = short_a + short_b;
+		cout << "+ " << short_c;
+		short_c = short_a - short_b;
+		cout << "- " << short_c;
+		short_c = short_a * short_b;
+		cout << "* " << short_c;
+		short_c = short_a / short_b;
+		cout << "/ " << short_c;
+	}
+	catch (frac<short>::error)
+	{
+		cout << "Знаменатель не равен 0\n Введите повторно\n";
+		goto start_s;
+	}
+
+	frac <char> char_a;
+	frac <char> char_b;
+	frac <char> char_c;
+	start_c:
+	cout << "\nchar\n";
+	try
+	{
+		cin >> char_a;
+		cin >> char_b;
+		char_c = char_a + char_b;
+		cout << "+ " << char_c;
+		char_c = char_a - char_b;
+		cout << "- " << char_c;
+		char_c = char_a * char_b;
+		cout << "* " << char_c;
+		char_c = char_a / char_b;
+		cout << "/ " << char_c;
+	}
+	catch (frac<char>::error)
+	{
+		cout << "Знаменатель не равен 0\n Введите повторно\n";
+		goto start_c;
+	}
+
+	frac<long> long_a;
+	frac<long> long_b;
+	frac<long> long_c;
+	start_l:
+	cout << "\nlong\n";
+	try
+	{
+		cin >> long_a;
+		cin >> long_b;
+		long_c = long_a + long_b;
+		cout << "+ " << long_c;
+		long_c = long_a - long_b;
+		cout << "- " << long_c;
+		long_c = long_a * long_b;
+		cout << "* " << long_c;
+		long_c = long_a / long_b;
+		cout << "/ " << long_c;
+	}
+	catch (frac<long>::error)
+	{
+		cout << "Знаменатель не равен 0\n Введите повторно\n";
+		goto start_l;
+	}
+
+	system("pause>nul");
+	return 0;
+}
