@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class count_1
+{
+protected:
+	int count;
+public:
+	count_1():count(0)
+	{}
+	count_1(int A) :count(A)
+	{}
+	int operator++()
+	{
+		return ++count;
+	}
+	int operator--()
+	{
+		return --count;
+	}
+};
+class count_2 :public count_1
+{
+protected:
+public:
+	count_2(int b):count_1(b)
+	{}
+	int operator++(int)
+	{
+		return count++;
+	}
+	int operator--(int )
+	{
+		return count--;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	count_1 a =5;
+	cout << ++a << '\t' << --a <<'\n';
+	count_2 b = 5;
+	cout << b++ << '\t' << b--;
+	system("pause>nul");
+	return 0;
+}
