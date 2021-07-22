@@ -1,0 +1,115 @@
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+
+const int O = 40;
+class money
+{
+private:
+	char money1[O];
+	char ustring[O];
+public:
+	long double mstold()
+	{
+		char money2[O];
+		int j = 0;
+		for (int i = 0; i < O and money1[i] != '\0'; i++)
+		{
+			if (48 <= money1[i] and money1[i] <= 57)
+			{
+				money2[j] = money1[i];
+				j++;
+			}
+		}
+		money2[j] = '\0';
+		long double a = 0;
+		for (int i = 0; money2[i] != '\0'; i++)
+		{
+			a = a * 10 + (money2[i] - 48);
+		}
+		return a;
+	}
+	void outstream(long double a)
+	{
+		int i = 0;
+		long long c = static_cast<long long>(a);
+		for (; c != 0;)
+		{
+			ustring[i] = c % 10 + 48;
+			c = c / 10;
+			i++;
+		}
+		char swap;
+		ustring[i] = '\0';
+		i = i - 1;
+		for (int j = 0; j < i; j++, i--)
+		{
+			swap = ustring[i];
+			ustring[i] = ustring[j];
+			ustring[j] = swap;
+		}
+		for (int i = 0; ustring[i - 1] != '\0'; i++)
+		{
+			money1[i] = ustring[i];
+		}
+	}
+	void get_money()
+	{
+		cout << "Введите денежную сумму - "; cin >> money1;
+	}
+	void show()
+	{
+		cout << ustring << endl;
+ 	}
+	friend money operator+ (money a, money b);
+	friend money operator- (money a, money b);
+	friend money operator* (money a, money b);
+	friend money operator/ (money a, money b);
+	money()
+	{
+		money1[0] = '\0';
+		ustring[0] = '\0';
+	}
+	money(long double a)
+	{
+		this->outstream(a);
+	}
+};
+money operator+(money a, money b)
+{
+	money c;
+	c.outstream(a.mstold() + b.mstold());
+	return c;
+}
+money operator-(money a, money b)
+{
+	money c;
+	c.outstream(a.mstold() - b.mstold());
+	return c;
+}
+money operator*(money a, money b)
+{
+	money c;
+	c.outstream(a.mstold() * b.mstold());
+	return c;
+}
+money operator/ (money a, money b)
+{
+	money c;
+	c.outstream(a.mstold() / b.mstold());
+	return c;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	money a, b, c;
+	long double s = 2;
+	b.get_money();
+	c = s + b;
+	cout << "Резудьтат сложения - "; c.show();
+	system("pause>nul");
+	return 0;
+}
