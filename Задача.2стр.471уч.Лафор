@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#pragma warning(disable : 4996)
+using namespace std;
+
+class String
+{
+private:
+	char* str;
+public:
+	String(char* s)
+	{
+		int length = strlen(s);
+		str = new char[length + 1];
+		strcpy(str, s);
+		for (int i = 0; str[i] != '\0'; i++)
+		{
+			if (97 <= str[i] && str[i] <= 122)
+			{
+				str[i] = str[i] - 32;
+			}
+		}
+	}
+	~String()
+	{
+		cout << "Удаление строку\n";
+		delete[]str;
+	}
+	void display()
+	{
+		cout << str << endl;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	char str [80];
+	cin.getline(str, 80);
+	String a(str);
+	a.display();
+	system("pause>nul");
+	return 0;
+}
