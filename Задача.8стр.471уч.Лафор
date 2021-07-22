@@ -1,0 +1,76 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+struct link
+{
+	int data;
+	link* next;
+};
+class linklist
+{
+private:
+	link* first;
+public:
+	linklist()
+	{
+		first = NULL;
+	}
+	void additem(int d);
+	void display();
+	~linklist()
+	{
+		link* current = first;
+		while (current != NULL)
+		{
+			first = current;
+			cout << "Удалён Адрес - " << first << endl;
+			current = current->next;
+			delete first;
+		}
+	}
+};
+void linklist::additem(int d)
+{
+	link* temp=first;
+	if (temp != NULL)
+	{
+		while (temp->next)
+		{
+			temp = temp->next;
+		}
+		temp->next = new link;
+		temp->next->data = d;
+		temp = temp->next;
+		temp->next = NULL;
+	}
+	else
+	{
+		first = new link;
+		first->data = d;
+		first->next = NULL;
+	}
+
+}
+void linklist::display()
+{
+	link* current = first;
+	while (current)
+	{
+		cout << "Адрес - " << current << "   Значения - " << current->data << endl;
+		current = current->next;
+	}
+}
+int main()
+{
+	system("chcp 1251>nul");
+	linklist ll;
+	ll.additem(25);
+	ll.additem(30);
+	ll.additem(45);
+	ll.additem(55);
+	ll.display();
+	system("pause>nul");
+	return 0;
+}
