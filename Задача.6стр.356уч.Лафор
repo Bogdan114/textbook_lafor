@@ -1,0 +1,107 @@
+#include <iostream>
+#include <cstdlib>
+#include <iomanip>
+
+using namespace std;
+
+class time1
+{
+private:
+	int ch;
+	int min;
+	int sec;
+public:
+	void getTime()
+	{
+		cout << "Часов - "; cin >> ch;
+		cout << "Минут - "; cin >> min;
+		cout << "Секунды - "; cin >> sec;
+	}
+	void show()
+	{
+		cout << "Время - " << setw(2) << setfill('0') << ch << ":" << setw(2)
+			<< setfill('0') << min << ":" << setw(2) << setfill('0') << sec << endl;
+	}
+	time1() : ch(0), min(0), sec(0)
+	{}
+	time1(int a, int b, int c) : ch(a), min(b), sec(c)
+	{}
+	time1 operator+ (time1 a)
+	{
+		time1 c;
+		c.ch = ch + a.ch;
+		c.min = min + a.min;
+		c.sec = sec + a.sec;
+
+		c.min = c.min + c.sec / 60;
+		c.sec = c.sec % 60;
+
+		c.ch = c.ch + c.min / 60;
+		c.min = c.min % 60;
+
+		c.ch = c.ch % 24;
+		return c;
+	}
+	time1 operator- (time1 a)
+	{
+		time1 c;
+		c.ch = ch - a.ch;
+		c.min = min - a.min;
+		c.sec = sec - a.sec;
+
+		c.min = c.min + c.sec / 60;
+		c.sec = c.sec % 60;
+
+		c.ch = c.ch + c.min / 60;
+		c.min = c.min % 60;
+
+		c.ch = c.ch % 24;
+		return c;
+	}
+	time1 operator* (time1 a)
+	{
+		time1 c;
+		c.ch = ch * a.ch;
+		c.min = min * a.min;
+		c.sec = sec * a.sec;
+
+		c.min = c.min + c.sec / 60;
+		c.sec = c.sec % 60;
+
+		c.ch = c.ch + c.min / 60;
+		c.min = c.min % 60;
+
+		c.ch = c.ch % 24;
+		return c;
+	}
+	time1 operator++()
+	{
+		return time1(ch++, min++, sec++);
+	}
+	time1 operator++(int)
+	{
+		return time1(++ch, ++min, ++sec);
+	}
+	time1 operator--()
+	{
+		return time1(ch--, min--, sec--);
+	}
+	time1 operator--(int)
+	{
+		return time1(--ch, --min, --sec);
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nuyl");
+	time1 a, b, c;
+	a.getTime();
+	b.getTime();
+	c = a * b;
+	c.show();
+	c = a - b;
+	c.show();
+	system("pause>nul");
+	return 0;
+}
