@@ -1,0 +1,29 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	cout << "Введите 1 если в цельсию или 0 если в фаренгейт" << endl;
+	srand(2);
+	int a;
+	if ((a = _getche()) == 0)
+	{
+		cout << endl;
+		a = rand() % 40 + 5;
+		cout << a << " - Цельсии"<<endl;
+		a = a * 9 / 5 + 32;
+		cout << a << " - Фаренгейт"<<endl;
+	}
+	else
+	{
+		cout << endl;
+		a = rand() % 40 + 5;
+		cout << a << " - Фаренгейт"<<endl;
+		a = (a-32) * 5 / 9;
+		cout << a << " - Цельсии" << endl;
+	}
+	system("pause>nul");
+	return 0;
+}
