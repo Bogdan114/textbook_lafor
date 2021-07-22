@@ -1,0 +1,96 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class string1
+{
+private:
+	static const int max = 255;
+	char str[max];
+public:
+	string1()
+	{
+		str[0] = '\0';
+	}
+	string1(char* a, static const int b)
+	{
+		for (int i = 0;a[i]!='\0'; i++)
+		{
+			if (i < b)
+				str[i] = a[i];
+			else exit(1);
+		}
+	}
+	void getStr()
+	{
+		cout << "Введите строку - "; cin >> str;
+	}
+	void show()
+	{
+		cout << "Строка - " << str << endl;
+	}
+	void operator+= (char* a)
+	{
+		int ja, jb;
+		for (ja = 0; str[ja] != '\0'; ja++)
+		{
+		}
+		for (jb = 0; a[jb] != '\0'; jb++)
+		{
+		}
+		if (ja + jb < max)
+		{
+			for (int i = ja; i < ja + jb; i++)
+			{
+				str[i] = a[i - ja];
+			}
+		}
+		else exit(1);
+		str[ja + jb] = '\0';
+	}
+	string1 operator+= (string1& a)
+	{
+		string1 c;
+		int ja, jb;
+		for (ja = 0; str[ja] != '\0'; ja++)
+		{
+		}
+		for (jb = 0; a.str[jb] != '\0'; jb++)
+		{
+		}
+		if (ja + jb < max)
+		{
+			for (int i = 0; i < ja; i++)
+			{
+				c.str[i] = str[i];
+			}
+			for (int i = ja; i < ja + jb; i++)
+			{
+				c.str[i] = a.str[i - ja];
+			}
+		}
+		else exit(1);
+		c.str[ja + jb] = '\0';
+		return c;
+	}
+	char* retStr()
+	{
+		return str;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	string1 a, b, c;
+	a.getStr();
+	b.getStr();
+	c.getStr();
+	a += b.retStr();
+	c = a += b;
+	a.show();
+	b.show();
+	c.show();
+	system("pause>nul");
+	return 0;
+}
