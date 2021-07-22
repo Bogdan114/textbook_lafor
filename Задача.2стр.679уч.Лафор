@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+const int MAX = 100;
+template <class tip>
+class FIFO
+{
+private:
+	tip mas[MAX];
+	int start = 0;
+	int finish = 0;
+public:
+	void vstavca(tip a)
+	{
+		if (finish == MAX - 1) finish = 0;
+		mas[finish++] = a;
+	}
+	void vivod()
+	{
+		if (start == MAX - 1) start = 0;
+		if (start == finish) cout << "Массив пуст\n";
+		else
+		{
+			cout << mas[start++] << endl;
+		}
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	FIFO<int> a;
+	FIFO<double> b;
+	FIFO<char> c;
+	a.vstavca(5);
+	a.vstavca(10);
+	a.vstavca(11);
+	cout << "int FIFO - " << endl;
+	a.vivod();
+	a.vivod();
+	a.vivod();
+	b.vstavca(5);
+	b.vstavca(10);
+	b.vstavca(11);
+	cout << "double FIFO - " << endl;
+	b.vivod();
+	b.vivod();
+	b.vivod();
+	c.vstavca('a');
+	c.vstavca('b');
+	c.vstavca('c');
+	cout << "char FIFO - " << endl;
+	c.vivod();
+	c.vivod();
+	c.vivod();
+	system("pause>nul");
+	return 0;
+}
