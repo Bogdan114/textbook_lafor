@@ -1,0 +1,80 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+class TIME1
+{
+private:
+	int chas;
+	int min;
+	int sec;
+public:
+	TIME1(): chas(0), min(0),sec(0)
+	{	}
+	TIME1(int a,int b, int c): chas(a), min(b), sec(c)
+	{	}
+	void getdisc()
+	{
+		char a;
+		cout << "Часов = ";
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			chas = chas * 10 + a;
+		}
+		a = 0;
+		cout << "\tМинут = ";
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			min = min * 10 + a;
+		}
+		a = 0;
+		cout << "\tСекунды = ";
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			sec = sec * 10 + a;
+		}
+	}
+	void display() const
+	{
+		if (chas / 10 >= 1)
+			cout << endl << chas<<":";
+		else cout << endl << "0" << chas <<":";
+		if (min / 10 >= 1)
+			cout << min <<":";
+		else cout << "0" << min <<":";
+		if (sec / 10 >= 1)
+			cout << sec;
+		else cout << "0" << sec;
+	}
+	TIME1 plus(TIME1 a);
+};
+TIME1 TIME1::plus(TIME1 a)
+{
+	TIME1 c;
+	c.chas = chas + a.chas;
+	c.min = min + a.min;
+	c.sec = sec + a.sec;
+	c.min = c.sec / 60 + c.min;
+	c.sec = c.sec % 60;
+	c.chas = c.min / 60 + c.chas;
+	c.min = c.min % 60;
+	c.chas = c.chas % 24;
+	return c;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	TIME1 a,b,c;
+	a.getdisc();
+	cout << endl;
+	b.getdisc();
+	c = a.plus(b);
+	c.display();
+	system("pause>nul");
+	return 0;
+}
