@@ -1,0 +1,75 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class time1
+{
+private:
+	int chas;
+	int minute;
+	int secund;
+public:
+	void putdata()
+	{
+		cout << chas << ":" << minute << ":" << secund;
+	}
+	void getdata()
+	{
+		while (true)
+		{
+			cout << "\nЧасы: ";
+			cin >> chas;
+			if (cin.good() && (chas<=23 && 0<=chas))
+			{
+				cin.ignore(10, '\n');
+				break;
+			}
+			cin.clear();
+			cout << "Неправильный ввод данных";
+			cin.ignore(10, '\n');
+		}
+
+		while (true)
+		{
+			cout << "Минуты: ";
+			cin >> minute;
+			if (cin.good() && (minute<=59 && 0<=minute))
+			{
+				cin.ignore(10, '\n');
+				break;
+			}
+			cin.clear();
+			cout << "Неправильный ввод данных";
+			cin.ignore(10, '\n');
+		}
+
+		while (true)
+		{
+			cout << "Секунды: ";
+			cin >> secund;
+			if (cin.good() &&(0<=secund && secund<=59))
+			{
+				cin.ignore(10, '\n');
+				break;
+			}
+			cin.clear();
+			cout << "Неправильный ввод данных";
+			cin.ignore(10, '\n');
+		}
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	char a; 
+	time1 b; 
+	do {
+		b.getdata();
+		b.putdata();
+		cout << "Введите У чтобы продолжить \n";
+		cin >> a;
+	} while (a == 'y');
+	system("pause>nul");
+	return 0;
+}
