@@ -1,0 +1,66 @@
+#include <iostream>
+#include <cstdlib>
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <functional>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	int i=0 , temp;
+	int mas[5];
+	set <int, less<int> > set1;
+
+	while (i < 5)
+	{
+		temp = rand() % 10 + 5;
+		if (temp % 2 == 0)
+		{
+			mas[i] = temp;
+			i = i + 1;
+		}
+	}
+	i = 0;
+	while (i < 5)
+	{
+		temp = rand() % 10 + 5;
+		if (temp % 2 == 1)
+		{
+			set1.insert(temp);
+			i = i + 1;
+		}
+	}
+
+	vector <int> vec(size(mas)+size(set1));
+	vector<int >::iterator iter;
+
+	for (auto i1 : set1)
+		cout << i1 << endl;
+	
+	cout << endl << endl;
+
+	i = 0;
+	sort(mas, mas + 5);
+	while (i < 5)
+	{
+		cout<<mas[i]<<endl;
+		i++;
+	}
+
+	cout << endl << endl;
+
+
+	merge(mas, mas + 5, set1.begin(), set1.end(), vec.begin(),less<int>());
+
+	iter = vec.begin();
+	while (iter!=vec.end())
+	{
+		cout << *iter++<<endl;
+	}
+	system("pause>nul");
+	return 0;
+}
