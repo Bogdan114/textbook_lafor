@@ -1,0 +1,82 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+class safe_mas
+{
+private:
+	int start1;
+	int finish1;
+	int size1;
+	int* var;
+public:
+	safe_mas()
+	{
+		var = 0;
+		start1 = 0;
+		finish1 = 0;
+		size1 = 0;
+	}
+	safe_mas(int s, int f)
+	{
+		start1 = s;
+		finish1 = f;
+		size1 = f - s+1;
+		var = new int[size1];
+		for (int i = 0; i < size1; i++)
+		{
+			var[i] = 0;
+		}
+	}
+	~safe_mas()
+	{
+		cout << "Удалён:  Адрес - " << start1 << "  Значение - " << var << endl;
+	}
+	void showAll()
+	{
+		cout << "Адрес старта - " << start1 << "\tАдрес конца - "
+			<< finish1 << endl;
+
+		for (int i = 0; i < size1; i++)
+		{
+			cout << i + start1 << "_элемент - " << var[i]<<"\t";
+		}
+	}
+	void del()
+	{
+		delete[]var;
+	}
+	int& operator[](int i)
+	{
+		i = i - start1;
+		if (i < size1)
+			return var[i];
+		else
+		{
+			cout << "Элемент за границой массива" << endl;
+			exit(1);
+		}
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	int s, f, i;
+	char ch;
+	cout << "Введите первый индекс - ";    cin >> s;
+	cout << "Введите последний индекс - "; cin >> f;
+	safe_mas a(s,f);
+	do {
+		cout << "Введите индекс в который хотите положить элемент - "; cin >> i;
+		cout << "Введите значение элемента - "; cin >> s;
+		a[i] = s;
+	} while (27!=(ch=_getche()));
+	
+	a.showAll();
+	a.del();
+	
+	system("pause>nul");
+	return 0;
+}
