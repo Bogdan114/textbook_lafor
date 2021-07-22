@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+template <class tip>
+tip amax(tip* mas, int n)
+{
+	tip max=0;
+	for (int i = 0; i < n; i++)
+	{
+		if (max < mas[i]) max = mas[i];
+	}
+	return max;
+}
+
+int main()
+{
+	srand(2);
+	const int o = 10;
+	system("chcp 1251>nul");
+	int* ias = new int[o];
+	double* das = new double[o];
+	char* cas = new char[o];
+	for (int i = 0; i < o; i++)
+	{
+		ias[i] = rand() % 10 + 5;
+		cout << ias[i] << "\t";
+	}
+	cout << endl;
+	for (int i = 0; i < o; i++)
+	{
+		das[i] = rand() % 10 + 5;
+		cout << das[i] << "\t";
+	}
+	cout << endl;
+	for (int i = 0; i < o; i++)
+	{
+		cas[i] ='a'+rand() % 10 + 5;
+		cout << cas[i] << "\t";
+	}
+	cout << endl;
+	cout << amax(ias, o) << "\t" << amax(das, o) << "\t" << amax(cas, o);
+	delete[] ias;
+	delete[] das;
+	delete[] cas;
+	system("pause>nul");
+	return 0;
+}
