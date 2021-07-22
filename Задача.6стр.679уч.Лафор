@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+template <class ti>
+class safearray
+{
+private:
+	ti* mas;
+	int n;
+public:
+	safearray();
+	safearray(int);
+	ti operator[](int);
+	void vivod();
+	void vvod();
+	~safearray();
+};
+template <class ti>
+safearray<ti>::safearray()
+{
+	n = 5;
+	mas = new ti[n];
+	for (int i = 0; i < n; i++)
+		mas[i] = 0;
+}
+template <class ti>
+safearray<ti>::safearray(int o)
+{
+	n = o;
+	mas = new ti[n];
+	for (int i = 0; i < n; i++)
+		mas[i] = 0;
+}
+template <class ti>
+ti safearray<ti>::operator[] (int a)
+{
+	return mas[a];
+}
+template <class ti>
+void safearray<ti>::vivod()
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << mas[i] << "\t";
+	}
+	cout << endl;
+}
+template<class ti>
+void safearray<ti>::vvod()
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Введите " << i << " элемент массива - "; cin >> mas[i];
+	}
+}
+template <class ti>
+safearray<ti>::~safearray()
+{
+	delete[] mas;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	safearray<int> a(3);
+	safearray<double> b(4);
+	a.vvod();
+	a.vivod();
+	b.vvod();
+	b.vivod();
+	system("pause>nul");
+	return 0;
+}
