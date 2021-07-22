@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+struct drob
+{
+	int ch=0;
+	int zn=0;
+};
+int main()
+{
+	system("chcp 1251>nul");
+	drob a;
+	drob a1;
+	char b = 0;
+	cout << "Введите дробь ";
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a.ch = a.ch * 10 + b;
+	}
+	b = 0;
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a.zn = a.zn * 10 + b;
+	}
+	b = 0;
+	cout <<endl << "Введите дробь 2 ";
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a1.ch = a1.ch * 10 + b;
+	}
+	b = 0;
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a1.zn = a1.zn * 10 + b;
+	}
+	b = 0;
+	cout << endl << "Сумма " << a.ch * a1.zn + a1.ch * a.zn << "/" << a1.zn * a.zn;
+	system("pause>nul");
+	return 0;
+}
