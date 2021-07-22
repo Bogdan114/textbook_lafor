@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+
+using namespace std;
+
+class Distance
+{
+private:
+	float a;
+	int b;
+public:
+	void get()
+	{
+		cout << "a - "; cin >> a;
+		cout << "b - "; cin >> b;
+	}
+	void show()
+	{
+		cout << "a - " << a;
+		cout << "\nb - " << b << endl;
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	Distance wri;
+	char a;
+	fstream file;
+	file.open("OOO.txt", ios::app | ios::in | ios::out | ios::binary);
+	do {
+		wri.get();
+		file.write(reinterpret_cast<char*>(&wri), sizeof(wri));
+		cout << "y/n"; cin >> a;
+	} while (a == 'y');
+	file.seekg(0);
+	file.read(reinterpret_cast<char*>(&wri), sizeof(wri));
+	while (file)
+	{
+		wri.show();
+		file.read(reinterpret_cast<char*>(&wri), sizeof(wri));
+	}
+	system("pause>nul");
+	return 0;
+}
