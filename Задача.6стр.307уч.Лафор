@@ -1,0 +1,157 @@
+#include <iostream>
+#include <cstdlib>
+#include <iomanip>
+
+using namespace std;
+
+class card
+{
+private:
+	enum Mast { Пики, Черви, Буби, Крести };
+	enum Dost { Шесть, Семь, Восемь, Девять, Десять, Валет, Дама, Король, ТУЗ };
+public:
+	Mast a;
+	Dost b;
+	int flag;
+	card() :flag(0)
+	{
+
+	}
+	void Mast_select(int i)
+	{
+		switch (i/9)
+		{
+		case 0: a = Пики; break;
+		case 1: a = Черви;break;
+		case 2: a = Буби; break;
+		case 3: a = Крести; break;
+		}
+	}
+	void Dost_select(int i)
+	{
+		switch (i % 9)
+		{
+		case 0: b = Шесть; break;
+		case 1: b = Семь; break;
+		case 2: b = Восемь; break;
+		case 3: b = Девять; break;
+		case 4: b = Десять; break;
+		case 5: b = Валет; break;
+		case 6: b = Дама; break;
+		case 7: b = Король; break;
+		case 8: b = ТУЗ; break;
+		}
+	}
+	void cout_card()
+	{
+		switch (a)
+		{
+		case 0: cout << setw(8) << setiosflags(ios::left) << "Пики "; break;
+		case 1: cout << setw(8) << setiosflags(ios::left) << "Черви "; break;
+		case 2: cout << setw(8) << setiosflags(ios::left) << "Буби "; break;
+		case 3: cout << setw(8) << setiosflags(ios::left) << "Крести "; break;
+		}
+		switch (b)
+		{
+		case 0: cout << setw(3) << setiosflags(ios::left) << "6"  ; break;
+		case 1: cout << setw(3) << setiosflags(ios::left) << "7" ; break;
+		case 2: cout << setw(3) << setiosflags(ios::left) << "8" ; break;
+		case 3: cout << setw(3) << setiosflags(ios::left) << "9" ; break;
+		case 4: cout << setw(3) << setiosflags(ios::left) << "10" ; break;
+		case 5: cout << setw(3) << setiosflags(ios::left) << "В" ; break;
+		case 6: cout << setw(3) << setiosflags(ios::left) << "Д" ; break;
+		case 7: cout << setw(3) << setiosflags(ios::left) << "К" ; break;
+		case 8: cout << setw(3) << setiosflags(ios::left) << "Т" ; break;
+		}
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	card col[36];
+	card Play1[12];
+	card Play2[12];
+	card Play3[12];
+	int Play;
+	for (int i = 0; i < 36; i++)
+	{
+		col[i].Mast_select(i);
+		col[i].Dost_select(i);
+	}
+	for (int i = 0; i < 36; i++)
+	{
+		col[i].cout_card();
+		if (i % 9 == 8)
+			cout << endl;
+	}
+	cout << endl;
+	cout << endl;
+	int p1 = 0;
+	card swap;
+	int Y = 35;
+	for (int i = 0; i < 12;)
+	{
+		p1 = rand() % Y+1;
+		if (col[p1].flag == 0)
+		{
+			col[p1].flag = 1;
+			Play1[i] = col[p1];
+			i++;
+
+
+			swap = col[p1];
+			col[p1] = col[Y];
+			col[Y] = swap;
+			Y--;
+		}
+	}
+	for (int i = 0; i < 12;)
+	{
+		p1 = rand() % Y+1;
+		if (col[p1].flag == 0)
+		{
+			col[p1].flag = 1;
+			Play2[i] = col[p1];
+			i++;
+
+			swap = col[p1];
+			col[p1] = col[Y];
+			col[Y] = swap;
+			Y--;
+		}
+	}
+	for (int i = 0; i < 12;)
+	{
+		if (Y != 0)
+			p1 = rand() % Y + 1;
+		else p1 = 0;
+		if (col[p1].flag == 0)
+		{
+			col[p1].flag = 1;
+			Play3[i] = col[p1];
+			i++;
+
+			swap = col[p1];
+			col[p1] = col[Y];
+			col[Y] = swap;
+			Y--;
+		}
+	}
+	for (int i = 0; i < 13; i++)
+	{
+		Play1[i].cout_card();
+	}
+	cout << endl;
+	for (int i = 0; i < 13; i++)
+	{
+		Play2[i].cout_card();
+	}
+	cout << endl;
+	for (int i = 0; i < 13; i++)
+	{
+		Play3[i].cout_card();
+	}
+	system("pause>nul");
+	return 0;
+}
