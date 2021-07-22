@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+struct sterling
+{
+	int fut;
+	int sh;
+	int pen;
+};
+inline void vvod(sterling& a);
+inline void vivod(sterling a);
+sterling Plus(sterling a, sterling b);
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	sterling a, b, c;
+	vvod(a);
+	vvod(b);
+	vivod(a);
+	vivod(b);
+	c = Plus(a, b);
+	vivod(c);
+	system("pause>nul");
+	return 0;
+}
+inline void vvod(sterling& a)
+{
+	a.fut = rand() % 10 + 1;
+	a.sh = rand() % 10 + 1;
+	a.pen = rand() % 10 + 1;
+}
+inline void vivod(sterling a)
+{
+	cout << "J" << a.fut << "." << a.sh << "." << a.pen<<endl;
+}
+sterling Plus(sterling a, sterling b)
+{
+	a.fut = a.fut + b.fut;
+	a.sh = a.sh + b.sh;
+	a.pen = a.pen + b.pen;
+	a.sh = a.pen / 12 + a.sh;
+	a.pen = a.pen % 12;
+	a.fut = a.sh / 20 + a.fut;
+	a.sh = a.sh % 20;
+	return a;
+}
