@@ -1,0 +1,161 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+const int LEN = 80;
+class employee
+{
+private:
+	char name[LEN];
+	unsigned long number;
+public:
+	void getdata()
+	{
+		cout << "\n Введите фамилию:  "; cin >> name;
+		cout << "  Введите номер:  "; cin >> number;
+	}
+	void putdata() const
+	{
+		cout << "\n  Фамилия:  " << name;
+		cout << "\n   Номер:  " << number;
+	}
+};
+class manager :public employee
+{
+private:
+	char title[LEN];
+	double dues;
+public:
+	void getdata()
+	{
+		employee::getdata();
+		cout << "  Введите должность:  "; cin >> title;
+		cout << "  Введите сумму взносов в гольф-клуб:  "; cin >> dues;
+	}
+	void putdata() const
+	{
+		employee::putdata();
+		cout << "\n  Должность:  " << title;
+		cout << "\n  Сумма взносов в гольф-клуб:  " << dues;
+	}
+};
+class scientist : public employee
+{
+private:
+	int pubs;
+public:
+	void getdata()
+	{
+		employee::getdata();
+		cout << "  Введите количество публикаций:  "; cin >> pubs;
+	}
+	void putdata() const
+	{
+		employee::putdata();
+		cout << "\n  Количество публикаций:  " << pubs;
+	}
+};
+class laborer:public employee
+{};
+class employee2:public employee
+{
+private:
+	double compensation;
+	enum period {Час,Неделя,Месяц};
+	period A;
+public:
+	void getdata()
+	{
+		employee::getdata();
+		char a;
+		cout << "Введите компенсацию - "; cin >> compensation;
+		cout << "Введите периуд - (Ч,Н,М)  "; 
+		start:
+		cin >> a;
+		switch (a)
+		{
+		case 'Ч':
+			A = Час;
+			break;
+		case 'Н':
+			A = Неделя;
+			break;
+		case 'М':
+			A = Месяц;
+			break;
+		default:
+			cout << "Введите повторно  ";
+			goto start;
+			break;
+		}
+	}
+	void putdata() const
+	{
+		employee::putdata();
+		cout << "\nКомпенсация - " << compensation;
+		switch (A)
+		{
+		case 0:
+			cout << "\nЧас ";
+			break;
+		case 1:
+			cout << "\nНеделя";
+			break;
+		case 2:
+			cout << "\nМесяц ";
+			break;
+		}
+	}
+};
+class manager2 :public employee2
+{
+private:
+	char title[LEN];
+	double dues;
+public:
+	void getdata()
+	{
+		employee2::getdata();
+		cout << "  Введите должность:  "; cin >> title;
+		cout << "  Введите сумму взносов в гольф-клуб:  "; cin >> dues;
+	}
+	void putdata() const
+	{
+		employee2::putdata();
+		cout << "\n  Должность:  " << title;
+		cout << "\n  Сумма взносов в гольф-клуб:  " << dues;
+	}
+};
+class scientist2 : public employee2
+{
+private:
+	int pubs;
+public:
+	void getdata()
+	{
+		employee2::getdata();
+		cout << "  Введите количество публикаций:  "; cin >> pubs;
+	}
+	void putdata() const
+	{
+		employee2::putdata();
+		cout << "\n  Количество публикаций:  " << pubs;
+	}
+};
+class laborer2 :public employee2
+{};
+int main()
+{
+	system("chcp 1251>nul");
+	manager2 a;
+	scientist2 b;
+	laborer2 c;
+	a.getdata();
+	b.getdata();
+	c.getdata();
+	a.putdata();
+	b.putdata();
+	c.putdata();
+	system("pause>nul");
+	return 0;
+}
