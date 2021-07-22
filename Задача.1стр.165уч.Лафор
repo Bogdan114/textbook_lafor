@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+struct phone
+{
+	int p1=0;
+	int p2=0;
+	int p3=0;
+};
+int main()
+{
+	system("chcp 1251>nul");
+	phone a;
+	char b=0;
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a.p1 = a.p1 * 10 + b;
+	}
+	b = 0;
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a.p2 = a.p2 * 10 + b;
+	}
+	b = 0;
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a.p3 = a.p3 * 10 + b;
+	}
+	cout <<endl<< "(" << a.p1 << ") " << a.p2 << "-" << a.p3;
+	system("pause>nul");
+	return 0;
+}
