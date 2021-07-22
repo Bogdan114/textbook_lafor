@@ -1,0 +1,13 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	float a = rand() % 30 + 5;
+	cout << "Градусы - " << a<<endl << "Фаренгейт - "<< a*9/5+32;
+	system("pause>nul");
+	return 0;
+}
