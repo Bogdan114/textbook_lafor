@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+
+using namespace std;
+const int MAX = 100;
+class chirc
+{
+private:
+	char FIO[MAX];
+	unsigned long num;
+public:
+	unsigned long back_num()
+	{
+		return num;
+	}
+	friend ostream& operator<<(ostream&, chirc&);
+	friend istream& operator>>(istream&, chirc&);
+};
+ostream& operator<<(ostream& aa, chirc& temp)
+{
+	aa << temp.FIO << " - " << temp.num;
+	return aa;
+}
+istream& operator>>(istream& aa, chirc& temp)
+{
+	char buf[MAX];
+	int flag = 0;
+	temp.num = 0;
+	aa.getline(buf, MAX);
+	int i;
+	for (i = 0; buf[i] != '\0' and buf; i++)
+	{
+		if ('a' <= buf[i] && buf[i] <= 'z')
+		{
+			temp.FIO[i] = buf[i];
+		}
+		else temp.FIO[i] = '\0';
+		if (48 <= buf[i] && buf[i] <= 57)
+		{
+			temp.num = temp.num * 10 + buf[i] - 48;
+		}
+	}
+	return aa;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	char a;
+	ifstream cc;
+	cc.open("Zadacha_4.txt",ios::in|ios::binary);
+	cc.seekg(0, ios::end);
+	int posO = cc.tellg();
+	cc.close();
+	ofstream pp("Zadacha_4.txt",ios::out|ios::app|ios::binary);
+	if (posO != 0)
+		pp << '\n';
+	chirc bb;
+	do
+	{
+		cin >> bb;
+		cout << "\nПродолжить (y):  "; cin >> a; cin.ignore(MAX, '\n');
+		pp << bb;
+		if (a == 'y')
+			pp << '\n';
+	} while (a == 'y');
+	pp.close();
+	cc.open("Zadacha_4.txt", ios::in | ios::binary);
+	cout << "Введите номер записи для вывода - "; cin >> posO;
+	while (!cc.eof())
+	{
+		cc >> bb;
+		if (posO==bb.back_num())
+			cout << bb << endl;
+	}
+	cc.close();
+	system("pause>nul");
+	return 0;
+}
