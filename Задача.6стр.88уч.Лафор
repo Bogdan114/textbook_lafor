@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	float a = rand() % 15 + 5;
+	cout << "Доларов =" << a<<endl;
+	cout << "Фунтов =" << a / 1.487 << endl;
+	cout << "Франков =" << a / 0.172 << endl;
+	cout << "Немецкий марка =" << a / 0.584 << endl;
+	cout << "Йен =" << a / 0.00955 << endl;
+	system("pause>nul");
+	return 0;
+}
