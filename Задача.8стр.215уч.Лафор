@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+void swap(int& a, int& b);
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	int a = rand() % 10 + 1, b = rand() % 10 + 3;
+	cout << "a= " << a << " b= " << b << endl;
+	swap(a, b);
+	cout << "a= " << a << " b= " << b << endl;
+	system("pause>nul");
+	return 0;
+}
+void swap(int& a, int& b)
+{
+	int swap;
+	if (a < b)
+	{
+		swap=b;
+		b = a;
+		a = swap;
+	}
+}
