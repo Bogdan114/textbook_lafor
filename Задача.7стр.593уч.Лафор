@@ -1,0 +1,69 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+
+using namespace std;
+const int MAX = 100;
+class chirc
+{
+private:
+	char FIO[MAX];
+	unsigned long num;
+	static fstream cc;
+public:
+	unsigned long back_num()
+	{
+		return num;
+	}
+	chirc()
+	{
+		FIO[0] = '\0';
+		num = 0;
+		cc.open("Zadacha_4.txt", ios::in | ios::out | ios::app | ios::binary);
+	}
+	void get_chirc()
+	{
+		cout << "Введите фамилию: "; cin >> FIO;
+		cout << "Введите номер: "; cin >> num;
+	}
+	void show_chirc()
+	{
+		cout << "\n Данные по пользователю: " << FIO << " - " << num;
+	}
+	static void write_file(chirc PP)
+	{
+		if (!cc)
+			cerr << "Невозможно открыть файл";
+		cc.write(reinterpret_cast<char*>(&PP), sizeof(PP));
+		if (!cc)
+			cerr << "Невозможно записать в файл";
+	}
+	static void read_file(chirc PP)
+	{
+		if (!cc)
+			cerr << "Невозможно открыть файл";
+		cc.seekg(0);
+		cc.read(reinterpret_cast<char*>(&PP), sizeof(PP));
+		while (!cc.eof())
+		{
+			PP.show_chirc();
+			cc.read(reinterpret_cast<char*>(&PP), sizeof(PP));
+		}
+	}
+};
+fstream chirc::cc;
+int main()
+{
+	system("chcp 1251>nul");
+	char userA;
+	chirc A;
+	do
+	{
+		A.get_chirc();
+		chirc::write_file(A);
+		cout << "Продолжить ? "; cin >> userA;
+	} while (userA=='y');
+	chirc::read_file(A);
+	system("pause>nul");
+	return 0;
+}
