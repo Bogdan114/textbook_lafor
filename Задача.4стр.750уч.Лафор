@@ -1,0 +1,96 @@
+#include <deque>
+#include <iostream>
+#include <cstdlib>
+#include <algorithm>
+#include <cstring>
+
+using namespace std;
+
+class person
+{
+private:
+	string lastname;
+	string firstname;
+	long phoneNumber;
+public:
+	person():lastname("Пусто"),firstname("Пусто"),phoneNumber(0)
+	{}
+	person(string a, string b, long c): lastname(a),firstname(b),phoneNumber(c)
+	{}
+	void display() const
+	{
+		cout << endl << lastname << " .\t" << firstname << "\t\tТелефон: " << phoneNumber;
+	}
+	long get_phone() const
+	{
+		return phoneNumber;
+	}
+	friend bool operator< (const person&, const person&);
+	friend bool operator== (const person&, const person&);
+	void getdata();
+};
+class comparePersons
+{
+public:
+	bool operator() (const person* ptr1, const person* ptr2) const
+	{
+		return *ptr1 < *ptr2;
+	}
+};
+//class displayPerson
+//{
+//public:
+//	void operator() (const person* ptr) const
+//	{
+//		ptr->display();
+//	}
+//};
+bool operator< (const person& a, const person& b)
+{
+	if (a.lastname == b.lastname)
+	{
+		if (a.firstname[0] < b.firstname[0])
+		{
+			return true;
+		}
+		else return false;
+	}
+	if (a.lastname[0] < b.lastname[0])
+	{
+		return true;
+	}
+	else return false;
+}
+bool operator== (const person& a, const person& b)
+{
+	if (a.firstname == b.firstname && a.lastname == b.lastname)
+		return true;
+	else return false;
+}
+void person::getdata()
+{
+	cout << "Фамилия: "; cin >> lastname;
+	cout << "Имя: "; cin >> firstname;
+	cout << "Телефон: "; cin >> phoneNumber;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	deque <person*> per;
+	person* a;
+	for (int i = 0; i < 3; i++)
+	{
+		a = new person;
+		a->getdata();
+		per.push_back(a);
+	}
+	sort(per.begin(), per.end(), comparePersons());
+	while (!per.empty())
+	{
+		a = per.front();
+		per.pop_front();
+		a->display();
+	}
+	system("pause>nul");
+	return 0;
+}
