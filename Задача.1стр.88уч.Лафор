@@ -1,0 +1,14 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	float a = rand() % 15 + 10;
+	cout << a << " - Галлон" <<endl;
+	cout << a / 7.481 << " - Фут";
+	system("pause>nul");
+	return 0;
+}
