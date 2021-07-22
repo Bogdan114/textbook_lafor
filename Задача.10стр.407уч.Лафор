@@ -1,0 +1,89 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+const int LEN = 80;
+class student
+{
+private:
+	char school[LEN];
+	char degree[LEN];
+public:
+	void getedu()
+	{
+		cout << "   Введите название учебного заведения :     "; cin >> school;
+		cout << "   Введите степень высшего образования \n" << "   (неполное,бакалавр,магистр,кандидат наук) :  ";
+		cin >> degree;
+	}
+	void putedu() const
+	{
+		cout << "\n Учебное заведение:  " << school;
+		cout << "\n Степень:   " << degree;
+	}
+};
+class employee
+{
+private:
+	char name[LEN];
+	unsigned long number;
+public:
+	void getdata()
+	{
+		cout << "\n Введите фамилию:  "; cin >> name;
+		cout << " Введите номер:  "; cin >> number;
+	}
+	void putdata()
+	{
+		cout << "\n Фамилия:  " << name;
+		cout << "\n Номер:    " << number;
+	}
+};
+class manager :private employee, private student
+{
+private:
+	char tittle[LEN];
+	double dues;
+public:
+	void getdata()
+	{
+		employee::getdata();
+		cout << "   Введите должность:   "; cin >> tittle;
+		cout << "   Введите сумму взносов в гольф клуб :   "; cin >> dues;
+		student::getedu();
+	}
+	void putdata()
+	{
+		employee::putdata();
+		cout << "   Введите должность:   " << tittle;
+		cout << "   Введите сумму взносов в гольф клуб :   "<< dues;
+		student::putedu();
+	}
+};
+class executiva :private manager
+{
+private:
+	int prem;
+	int achii;
+public:
+	void getdata()
+	{
+		manager::getdata();
+		cout << "\n  Премия - "; cin >> prem;
+		cout << "Кол-во акций:   "; cin >> achii;
+	}
+	void putdata()
+	{
+		manager::putdata();
+		cout << "\n Премия" << prem << "\n кол-во акций:  " << achii << endl;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	executiva A;
+	A.getdata();
+	A.putdata();
+	system("pause>nul");
+	return 0;
+}
