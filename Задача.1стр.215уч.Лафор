@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+inline float Rad(float R, const float& p = 3.14);
+int main()
+{
+	system("chcp 1251>nul");
+	const float& p = 3.14;
+	srand(2);
+	float R = rand() % 10 + 5;
+	cout << "Радиус "<<R<<endl<<"Радиус "<<Rad(R);
+	system("pause>nul");
+	return 0;
+}
+inline float Rad(float R, const float& p )
+{
+	return (p * R * R);
+}
