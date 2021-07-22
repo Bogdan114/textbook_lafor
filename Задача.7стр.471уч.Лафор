@@ -1,0 +1,88 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+
+using namespace std;
+
+class person
+{
+protected:
+	string name;
+public:
+	void setName()
+	{
+		cout << "Введите имя:  "; cin >> name;
+	}
+	void printName()
+	{
+		cout << endl << name;
+	}
+	string getName()
+	{
+		return name;
+	}
+};
+class person_salary:public person
+{
+protected:
+	float salary;
+public:
+	void setName()
+	{
+		person::setName();
+		cout << "Зарплата - "; cin >> salary;
+	}
+	void printName()
+	{
+		person::printName();
+		cout << endl <<salary;
+	}
+	float get_salary()
+	{
+		return salary;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	void bsalary(person_salary**, int);
+	person_salary* persPtr[100];
+	int n = 0;
+	char choice;
+	do {
+		persPtr[n] = new person_salary;
+		persPtr[n]->setName();
+		n++;
+		cout << "Продолжаем ввод (Д/Н)?";
+		cin >> choice;
+	} while (choice ==c 'Д');
+	
+	cout << "\nНеотсортированный список: ";
+	for (int j = 0; j < n; j++)
+		persPtr[j]->printName();
+
+	bsalary(persPtr, n);
+
+	cout << "\nОтсортированный список: ";
+	for (int j = 0; j < n; j++)
+		persPtr[j]->printName();
+
+	cout << endl;
+
+	system("pause>nul");
+	return 0;
+}
+void bsalary(person_salary** a, int n)
+{
+	person_salary* swap;
+	for (int i=0;i<n;i++)
+		for (int j = 0; j < n; j++)
+		{
+			if (a[i]->get_salary() > a[j]->get_salary())
+			{
+				swap = a[i];
+				a[i] = a[j];
+				a[j] = swap;
+			}
+		}
+}
