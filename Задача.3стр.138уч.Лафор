@@ -1,0 +1,20 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	cout << "Введите число: ";
+	char a;
+	int sum=0;
+	for (int i = 0; i < 6; i++)
+	{
+		a = _getche();
+		sum = sum*10 + (a-48);
+	}
+	cout << endl <<"Число - "<<sum;
+	system("pause>nul");
+	return 0;
+}
