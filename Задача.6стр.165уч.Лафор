@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+enum etype
+{
+	laborer,
+	secretary,
+	manager,
+	accountant,
+	executive,
+	researcher
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	etype a;
+start:
+	char b = _getche();
+	switch (b)
+	{
+	case 'l': a = laborer; break;
+	case 's': a = secretary; break;
+	case 'm': a = manager; break;
+	case 'a': a = accountant; break;
+	case 'e': a = executive; break;
+	case 'r': a = researcher; break;
+
+	default:
+		cout << "Ввели не правильное число" << endl;
+		goto start;
+		break;
+	}
+	cout <<endl << a+1<<" - Номер в списке"<<endl<<"Название профессии - ";
+	switch (a)
+	{
+	case 1: cout << endl<<"laborer"; break;
+	case 2: cout << endl << "secretary"; break;
+	case 3: cout << endl << "manager"; break;
+	case 4: cout << endl << "accountant"; break;
+	case 5: cout << endl << "executive"; break;
+	case 6: cout << endl << "researcher"; break;
+
+	default:
+		cout << "Ввели не правильное число" << endl;
+		goto start;
+		break;
+	}
+	system("pause>nul");
+	return 0;
+}
