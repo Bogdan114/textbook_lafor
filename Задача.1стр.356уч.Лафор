@@ -1,0 +1,50 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class Distance
+{
+private:
+	int feet;
+	float inches;
+public:
+	Distance():feet(0),inches(0)
+	{}
+	Distance(int a, float b) : feet(a), inches(b)
+	{}
+	void show()
+	{
+		cout << "feet,inches" << feet << "," << inches <<endl;
+	}
+	Distance operator- (Distance b)
+	{
+		Distance c;
+		c.feet = feet - b.feet;
+		if (inches - b.inches < 0)
+		{
+			c.feet = c.feet - 1;
+			c.inches = inches - b.inches + 12;
+		}
+		else
+		{
+			c.inches = inches - b.inches;
+		}
+		return c;
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	Distance a(rand() % 10 + 1, static_cast<float>(rand()%10+2));
+	Distance b(rand() % 10 + 1, static_cast<float>(rand() % 10 + 2));
+	Distance c;
+	a.show();
+	b.show();
+	c = a - b;
+	c.show();
+	system("pause>nul");
+	return 0;
+}
