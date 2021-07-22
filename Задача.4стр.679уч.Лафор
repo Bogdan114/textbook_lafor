@@ -1,0 +1,35 @@
+#include <iostream>	
+#include <cstdlib>
+
+using namespace std;
+
+template <class tip>
+void swap1(tip& a, tip& b)
+{
+	tip swap;
+	swap = a;
+	a = b;
+	b = swap;
+}
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	int a, b;
+	a = rand() % 5 + 5;
+	b = rand() % 10 + 10;
+	cout << "a = " << a << "\tb = " << b;
+	cout << endl;
+	swap1(a, b);
+	cout << "a = " << a << "\tb = " << b;
+	cout << endl;
+	char a1, b1;
+	a1 = 'a' + rand() % 5 + 5;
+	b1 = 'a' + rand() % 5 + 5;
+	cout << "a1 = " << a1 << "\tb1 = " << b1;
+	cout << endl;
+	swap1(a1, b1);
+	cout << "a1 = " << a1 << "\tb1 = " << b1;
+	system("pause>nul");
+	return 0;
+}
