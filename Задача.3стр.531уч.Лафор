@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class Distance
+{
+private:
+	int feet;
+	float inches;
+public:
+	Distance():feet(0),inches(0.0)
+	{}
+	Distance(int f, float i):feet(f),inches(i)
+	{}
+	Distance(float a)
+	{
+		feet = static_cast<int>(a);
+		inches=(a- static_cast<int>(a))*100;
+		while (inches >= 12)
+		{
+			inches=inches - 12;
+			feet++;
+		}
+	}
+	void showlist()
+	{
+		cout << feet << "\'- " << inches << '\"'<<endl;
+	}
+	friend Distance operator*(Distance, Distance);
+};
+Distance operator * (Distance a, Distance b)
+{
+	int f = a.feet * b.feet;
+	float i = a.inches * b.inches;
+	if (12 <= i)
+	{
+		i -= 12;
+		f++;
+	}
+	return Distance(f, i);
+}
+int main()
+{
+	system("chcp 1251>nul");
+	Distance b(5, 3.5);
+	Distance c;
+	c = b * 7.5;
+	b.showlist();
+	c.showlist();
+	system("pause>nul");
+	return 0;
+}
