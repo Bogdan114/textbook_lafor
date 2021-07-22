@@ -1,0 +1,43 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+struct data1
+{
+	int day = 0;
+	int month = 0;
+	int year = 0;
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	data1 a;
+	int i = 0;
+	char b = 0;
+		cout << "Дата: ";
+		while (48 <= (b = _getche()) and b <= 57)
+		{
+			b = b - 48;
+			a.day = a.day * 10 + b;
+		}
+		b = 0;
+		while (48 <= (b = _getche()) and b <= 57)
+		{
+			b = b - 48;
+			a.month = a.month* 10 + b;
+		}
+		b = 0;
+		while (48 <= (b = _getche()) and b <= 57 and i<4)
+		{
+			b = b - 48;
+			i++;
+			a.year = a.year * 10 + b;
+		}
+		b = 0;
+		cout << endl << a.day << "/" << a.month << "/" << a.year;
+	system("pause>nul");
+	return 0;
+}
