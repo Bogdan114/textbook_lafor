@@ -1,0 +1,146 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+#include <cmath>
+
+using namespace std;
+
+class drob
+{
+private:
+	int celoe;
+	int chisl;
+	int znam;
+public:
+	drob() :celoe(0), chisl(0), znam(0)
+	{}
+	drob(int a,int b, int c) :celoe(a), chisl(b), znam(c)
+	{}
+	char getdrob()
+	{
+		char a = 0;
+		chisl = 0;
+		znam = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			chisl = chisl * 10 + a;
+		}
+		a = 0;
+		while (48 <= (a = _getche()) and a <= 57)
+		{
+			a = a - 48;
+			znam = znam * 10 + a;
+		}
+		return a;
+	}
+	void dis() const
+	{
+		cout << "Дробь = ";
+		if (chisl != 0 and znam != 0)
+			if (celoe > 0)
+				cout << celoe << " " << chisl << "/" << znam << endl;
+			else cout << chisl << "/" << znam << endl;
+		else cout << celoe << endl;
+	}
+	drob znac(drob a, char y)
+	{
+		drob c;
+	start:
+		switch (y)
+		{
+		case '/':
+			c.chisl = chisl * a.znam;
+			c.znam = znam * a.chisl;
+			break;
+		case '*':
+			c.chisl = chisl * a.chisl;
+			c.znam = znam * a.znam;
+			break;
+		case '+':
+			c.chisl = chisl * a.znam + znam * a.chisl;
+			c.znam = znam * a.znam;
+			break;
+		case '-':
+			c.chisl = chisl * a.znam - znam * a.chisl;
+			c.znam = znam * a.znam;
+			break;
+		default:
+			cout << "Действия введено неверно (+ - * /)" << endl;
+			cout << "Введите повторно ";
+			y = _getche();
+			goto start;
+			break;
+		}
+		return c;
+	}
+	void socr()
+	{
+		int chisl1 = chisl;
+		int znam1 = znam;
+		int temp;
+		chisl1 = abs(chisl1);
+		znam1 = abs(znam1);
+		if (chisl1 > znam1)
+		{
+			celoe = chisl1 / znam1;
+			chisl1 = chisl1 % znam1;
+		}
+		if (znam1 == 0)
+		{
+			cout << "Знаменатель = 0";
+			exit(1);
+		}
+		if (chisl1 == 0)
+		{
+			cout << "Ответ = 0";
+			exit(1);
+		}
+		for (int i = 1; i <= chisl1; i++)
+		{
+			if (chisl1 % i == 0 and znam1 % i == 0)
+				temp = i;
+		}
+		chisl1 = chisl1 / temp;
+		znam1 = znam1 / temp;
+		chisl = chisl1;
+		znam = znam1;
+		if (chisl == znam)
+		{
+			chisl = 0; znam = 0;
+			celoe = 1;
+		}
+	}
+	void perebor();
+};
+void drob::perebor()
+{
+	drob c,proz;
+	proz.znam = znam;
+	proz.chisl = 1;
+	c.znam=znam;
+	for (int i = chisl; i < znam; i++)
+	{
+		c.chisl = i;
+		c.dis();
+	}
+	for (int i = chisl; i+1 < znam; i++)
+	{
+		c.chisl = i+1;
+		proz = proz.znac(c, '*');
+		proz.dis();
+	}
+	proz.socr();
+	proz.dis();
+}
+int main()
+{
+	system("chcp 1251>nul");
+	int znam2;
+	cout << "Введите знаменатель - ";
+	cin >> znam2;
+	drob a(0,1,znam2);
+	a.perebor();
+	system("pause>nul");
+	return 0;
+}
