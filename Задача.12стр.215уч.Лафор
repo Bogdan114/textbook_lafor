@@ -1,0 +1,69 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+struct Drop
+{
+	int ch;
+	int del;
+};
+inline Drop umno(Drop a, Drop b);
+inline Drop delit(Drop a, Drop b);
+inline Drop minus1(Drop a, Drop b);
+inline Drop plus1(Drop a, Drop b);
+inline void vivod(Drop a);
+inline void vvod(Drop& a);
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	Drop a, b;
+	vvod(a);
+	vvod(b);
+	vivod(a);
+	vivod(b);
+	vivod(plus1(a, b));
+	vivod(minus1(a, b));
+	vivod(delit(a, b));
+	vivod(umno(a, b));
+	system("pause>nul");
+	return 0;
+}
+inline void vvod(Drop& a)
+{
+	a.ch = rand() % 10 + 1;
+	a.del = rand() % 10 + 1;
+}
+inline void vivod(Drop a)
+{
+	cout << "Дробь " << a.ch << "/" << a.del << endl;
+}
+inline Drop plus1(Drop a, Drop b)
+{
+	Drop c;
+	c.ch = (a.ch * b.del + b.ch * a.del);
+	c.del = (b.del * a.del);
+	return  c;
+}
+inline Drop minus1(Drop a, Drop b)
+{
+	Drop c;
+	c.ch = (a.ch * b.del - b.ch * a.del);
+	c.del = (b.del * a.del);
+	return  c;
+}
+inline Drop delit(Drop a, Drop b)
+{
+	Drop c;
+	c.ch = (a.ch * b.del);
+	c.del = (b.ch * a.del);
+	return  c;
+}
+inline Drop umno (Drop a, Drop b)
+{
+	Drop c;
+	c.ch = (a.ch * b.ch);
+	c.del = (b.del * a.del);
+	return  c;
+}
