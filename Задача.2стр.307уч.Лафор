@@ -1,0 +1,39 @@
+#include<iostream>
+#include <cstdlib>
+#include <string>
+
+using namespace std;
+
+class employee
+{
+private:
+	string Name;
+	long num;
+public:
+	void getdata()
+	{
+		cout << "Введите имя - "; cin >> Name;
+		cout << "Введите номер - "; cin >> num;
+	}
+	void putdata()
+	{
+		cout << "Имя - " << Name<<endl;
+		cout << "Номер - " << num<<endl;
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	employee max[100];
+	for (int i = 0; i < 2; i++)
+	{
+		max[i].getdata();
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		max[i].putdata();
+	}
+	system("pause>nul");
+	return 0;
+}
