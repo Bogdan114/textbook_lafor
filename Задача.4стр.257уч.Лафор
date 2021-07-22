@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class sotrudnic
+{
+private:
+	int num;
+	float oclad;
+public:
+	sotrudnic():num(0),oclad(0)
+	{}
+	sotrudnic(int a, float b):num(a),oclad(b)
+	{}
+	void getnum()
+	{
+		cout << "Введите номер - "; cin >> num;
+		cout << "Введите оклад - "; cin >> oclad;
+	}
+	void display() const
+	{
+		cout << endl << "Номер - " << num << endl << "Оклад - " << oclad;
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	sotrudnic* a = new sotrudnic[3];
+	for (int i = 0; i < 3; i++)
+	{
+		a[i].getnum();
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		a[i].display();
+	}
+	delete[] a;
+	system("pause>nul");
+	return 0;
+}
