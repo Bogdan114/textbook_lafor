@@ -1,0 +1,12 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	const int a = 10;
+	cout << a << endl << a + a << endl <<(a + a)-1;
+	system("pause>nul");
+	return 0;
+}
