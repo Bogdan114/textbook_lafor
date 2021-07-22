@@ -1,0 +1,61 @@
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <cstring>
+
+using namespace std;
+void ocopy(int argc, char* argv[]);
+void filesize(int argc, char* argv[]);
+int main(int argc,char*argv[])
+{
+	system("chcp 1251>nul");
+	//if (strcmp(argv[0],"ocopy"))
+	//	ocopy(argc, argv);
+	//else cerr << "\nФормат команды: ocopy имя_файла имя_файла1";
+	if (strcmp(argv[0], "filesize"))
+		filesize(argc, argv);
+	else cerr << "\nФормат команды: filesize имя_файла1";
+	system("pause>nul");
+	return 0;
+}
+void ocopy(int argc, char* argv[])
+{
+	if (argc != 4)
+	{
+		cerr << "\nФормат команды: ocopy имя_файла имя_файла";
+		exit(-1);
+	}
+	char ch;
+	ifstream infile;
+	ofstream oufile(argv[3]);
+	infile.open(argv[2]);
+	if (!infile)
+	{
+		cerr << "\nНевозможно открыть " << argv[2];
+		exit(-1);
+	}
+	while (infile.get(ch))
+	{
+		cout << ch;
+		oufile.put(ch);
+	}
+}
+void filesize(int argc, char* argv[])
+{
+	if (argc != 3)
+	{
+		cerr << "\nФормат команды: filesize имя_файла имя_файла";
+		exit(-1);
+	}
+	char ch;
+	ifstream infile;
+	infile.open(argv[2]);
+	if (!infile)
+	{
+		cerr << "\nНевозможно отк0рыть " << argv[2];
+		exit(-1);
+	}
+	infile.seekg(0, ios::end);
+	int hh = infile.tellg();
+	cout << "\nРазмер - " << hh;
+}
