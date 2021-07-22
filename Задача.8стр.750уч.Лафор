@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cstdlib>
+#include <vector>
+#include <algorithm>
+#include <functional>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	vector<int> s = { 4,5,6,1,2,7,8 };
+	vector<int>::iterator it_first;
+	vector<int>::iterator it_last;
+	vector<int>::iterator it_find;
+	int first, last, first2;
+	
+	cout << "Введите левую границу: "; cin >> first;
+	cout << "Введите правую границу: "; cin >> last;
+	cout << "Введите место вставки: "; cin >> first2;
+
+	it_first = find(s.begin(), s.end(), first);
+	it_last= find(s.begin(), s.end(), last);
+	it_find= find(s.begin(), s.end(), first2);
+
+	++it_find;
+	++it_last;
+	vector<int> temp(it_first, it_last);
+	copy(temp.begin(), temp.end(), inserter(s, it_find));
+
+	it_first = s.begin();
+	it_last = s.end();
+
+	for (int i = 0; i < s.size(); i++)
+		cout << s[i] << ' ';
+	system("pause>nul");
+	return 0;
+}
