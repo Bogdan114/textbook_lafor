@@ -1,0 +1,42 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	char a;
+	char x=1;
+	int xSUM=0;
+	char y=1;
+	int ySUM=0;
+	do
+	{
+		cout <<endl<< "Введите первый операнд, операцию и второй операнд: ";
+		while(48<=(x = _getche()) and x<=57)
+		{
+			x = x-48;
+			xSUM = xSUM * 10 + x;
+		}
+		a = x;
+		while (48 <= (y = _getche()) and y <= 57)
+		{
+			y = y - 48;
+			ySUM = ySUM * 10 + y;
+		}
+		if (a - 42 == 0)
+			cout << "Результат:" << xSUM * ySUM << endl;
+		if (a - 43 == 0)
+			cout << "Результат:" << xSUM + ySUM << endl;
+		if (a - 45 == 0)
+			cout << "Результат:" << xSUM - ySUM << endl;
+		if (a - 47 == 0)
+			cout << "Результат:" << xSUM / ySUM << endl;
+		a = 0;
+		cout << "Продолжать нажмите Y остановиться нажмите n" <<endl;
+		a = _getche();
+	} while (a != 'n');
+	system("pause>nul");
+	return 0;
+}
