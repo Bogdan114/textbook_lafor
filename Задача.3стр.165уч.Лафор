@@ -1,0 +1,90 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+struct englstrc
+{
+	float Fut = 0;
+	int inches = 0;
+};
+
+struct Volume
+{
+	englstrc shirina;
+	englstrc dlina;
+	englstrc visota;
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	Volume a,sum;
+	sum.shirina.Fut = 1;
+	sum.shirina.inches = 1;
+	sum.dlina.Fut = 1;
+	sum.dlina.inches = 1;
+	sum.visota.Fut = 1;
+	sum.visota.inches = 1;
+	char b = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		if (i == 0)
+		{
+			cout << endl << "Ширина:\t";
+		}
+		else if (i == 1)
+		{
+			cout << endl << "Длинна:\t";
+		}else cout << endl << "Высота:\t";
+
+		cout << "Первая: ";
+		while (48 <= (b = _getche()) and b <= 57)
+		{
+			b = b - 48;
+			if(i==0)
+				a.shirina.Fut = a.shirina.Fut * 10 + b;
+			else if (i == 1)
+				a.dlina.Fut = a.dlina.Fut * 10 + b;
+			else a.visota.Fut = a.visota.Fut * 10 + b;
+		}
+		b = 0;
+		cout << "\tВторое: ";
+		while (48 <=(b = _getche()) and b <= 57)
+		{
+			b = b - 48;
+			if (i == 0)
+				a.shirina.inches = a.shirina.inches * 10 + b;
+			else if (i == 1)
+					a.dlina.inches = a.dlina.inches * 10 + b;
+			else a.visota.inches = a.visota.inches * 10 + b;
+		}
+		b = 0;
+		if (i == 0)
+		{
+			sum.shirina.Fut = a.shirina.Fut + (a.shirina.inches) / 12;
+			a.shirina.inches= (a.shirina.inches) % 12;
+			sum.shirina.inches = a.shirina.inches;
+		}
+		else if (i == 1)
+		{
+			sum.dlina.Fut = a.dlina.Fut + (a.dlina.inches) / 12;
+			a.dlina.inches = (a.dlina.inches) % 12;
+			sum.dlina.inches = a.dlina.inches;
+		}
+		else
+		{
+			sum.visota.Fut = a.visota.Fut + (a.visota.inches) / 12;
+			a.visota.inches = (a.visota.inches) % 12;
+			sum.visota.inches = a.visota.inches;
+		}
+	}
+	sum.shirina.inches = sum.shirina.inches * sum.dlina.inches * sum.visota.inches;
+	sum.shirina.Fut = sum.shirina.Fut*sum.dlina.Fut * sum.visota.Fut;
+	sum.shirina.Fut = sum.shirina.Fut+sum.shirina.inches / 12;
+	sum.shirina.inches = sum.shirina.inches % 12;
+	cout << endl << "V. " << sum.shirina.Fut << "  " << sum.shirina.inches;
+	system("pause>nul");
+	return 0;
+}
