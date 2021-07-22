@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+struct Deneg
+{
+	int f;
+	int sh;
+	int p;
+};
+int main()
+{
+	system("chcp 1251>nul");
+	double a;
+	Deneg d;
+	cout << "Введите число десятичных футов ";
+	cin >> a;
+	a = a + 0.001;
+	d.f = static_cast<int>(a);
+	a=a- static_cast<int>(a);
+	a = a * 100;
+	d.f = d.f + a / 20;
+	d.sh = static_cast<int>(a)%20;
+	a = a - static_cast<int>(a);
+	a = a * 10;
+	d.p = a;
+	cout << endl << "J" << d.f << "." << d.sh << "." << d.p;
+	system("pause>nul");
+	return 0;
+}
