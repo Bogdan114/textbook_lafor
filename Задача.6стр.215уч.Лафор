@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+struct TIME1
+{
+	int ch;
+	int min;
+	int sec;
+};
+inline void vvod(TIME1& a);
+inline void vivod(TIME1 a);
+inline long secu(TIME1 a);
+TIME1 TIME2(long a);
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	TIME1 a;
+	long s;
+	char b = 0;
+	//do {
+		vvod(a);
+		vivod(a);
+		s = secu(a);
+		cout << "Максимальное кол-во секунды " << s << endl;
+		a = TIME2(s);
+		vivod(a);
+		//cout << "Введите n если хотите остановить" << endl;
+	//} while ((b = _getche()) != 'n');
+	system("pause>nul");
+	return 0;
+}
+inline void vvod(TIME1& a)
+{
+	a.ch = rand() % 10 + 1;
+	a.min = rand() % 10 + 1;
+	a.sec = rand() % 10 + 1;
+}
+inline void vivod(TIME1 a)
+{
+	cout << endl << "Часы " << a.ch << " Минуты " << a.min << " Секунды " << a.sec << endl;
+}
+inline long secu(TIME1 a)
+{
+	return (a.ch * 3600 + a.min * 60 + a.sec);
+}
+TIME1 TIME2(long a)
+{
+	TIME1 P;
+	P.ch = a / 3600;
+	a = a % 3600;
+	P.min = a / 60;
+	a = a % 60;
+	P.sec = a;
+	return P;
+}
