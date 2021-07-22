@@ -1,0 +1,19 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	int f = rand() % 15 + 5, sh = 17, p = 7;
+	cout <<"Пенсо - "<< p<< "\tШилингов -" << sh  << "\t Футов - " << f<<endl;
+	sh = p / 12 + sh;
+	p = p - p / 12;
+	p = (p * 5 / 12)+0.5;
+	f = sh / 20 + f;
+	sh = sh - sh / 20;
+	cout << "Шилингов -" << sh * 5+p << "\t Футов - " << f;
+	system("pause>nul");
+	return 0;
+}
