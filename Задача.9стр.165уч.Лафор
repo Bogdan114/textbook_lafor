@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+struct time1
+{
+	int ch = 0;
+	int mi = 0;
+	int sec = 0;
+};
+int main()
+{
+	system("chcp 1251>nul");
+	time1 a;
+	char b = 0;
+	cout << "Часы ";
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a.ch = a.ch * 10 + b;
+	}
+	b = 0;
+	cout << "\tМинуты ";
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a.mi = a.mi * 10 + b;
+	}
+	b = 0;
+	cout  << "\tСекунды ";
+	while (48 <= (b = _getche()) and b <= 57)
+	{
+		b = b - 48;
+		a.sec = a.sec * 10 + b;
+	}
+	b = 0;
+	cout << endl << "Секунд " << a.ch * 3600 + a.mi * 60 + a.sec;
+	system("pause>nul");
+	return 0;
+}
