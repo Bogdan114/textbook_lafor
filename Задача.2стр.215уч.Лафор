@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+double power(double n, int p = 2);
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	double n = rand() % 5 + 5;
+	int p = rand() % 5 + 2;
+	cout << "Число " << n << " Степень " << p << " Равно " << power(n,p);
+	system("pause>nul");
+	return 0;
+}
+double power(double n, int p)
+{
+	for (int i = 1; i < p; i++)
+	{
+		n = n * n;
+	}
+	return n;
+}
