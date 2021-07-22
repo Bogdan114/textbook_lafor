@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+class String
+{
+protected:
+	const static int MAX = 3;
+	char str[MAX];
+public:
+	void get_str()
+	{
+		cout << "Введите строку - ";
+		cin >> str;
+	}
+	void show_str()
+	{
+		cout << "Строка - " << str << endl;
+	}
+	String()
+	{
+		str[0] = '\0';
+	}
+};
+class Pstring:private String
+{
+public:
+	void get_str()
+	{
+		cout << "Введите строку - "<<endl;
+		int i = 0;
+		while (i < MAX-1 && 13!=(str[i]=_getche()))
+		{
+			i++;
+		}
+		str[i] = '\0';
+		if (i == MAX - 1)
+			cout << endl << "Строка переполнена" << endl;
+	}
+	void show_str()
+	{
+		cout <<endl << "Строка - " << str << endl;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	Pstring A;
+	A.get_str();
+	A.show_str();
+	system("pause>nul");
+	return 0;
+}
