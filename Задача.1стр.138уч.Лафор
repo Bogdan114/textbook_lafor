@@ -1,0 +1,20 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	int a = rand() % 8 + 2;
+	cout << a << "-Ввёл пользователь \n";
+	for (int i = 0; i < 20; i++)
+	{
+		for (int j = 1; j <= 10; j++)
+			cout << setw(7) << setiosflags(ios::left) << a*(i*10+j);
+		cout << endl;
+	}
+	system("pause>nul");
+	return 0;
+}
