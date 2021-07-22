@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+struct time1
+{
+	int ch;
+	int mi;
+	int se;
+};
+void swap(time1& a, time1& b);
+void vvod(time1& a);
+void vivod(time1 a);
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	time1 a, b;
+	vvod(a);
+	vvod(b);
+	vivod(a);
+	vivod(b);
+	swap(a, b);
+	vivod(a);
+	vivod(b);
+	system("pause>nul");
+	return 0;
+}
+void vvod(time1& a)
+{
+	a.ch = rand() % 10 + 1;
+	a.mi = rand() % 10 + 1;
+	a.se = rand() % 10 + 1;
+}
+void vivod(time1 a)
+{
+	cout << "Часы = " << a.ch << " Минуты = " << a.mi << " Секунды = " << a.se << endl;
+}
+void swap(time1& a, time1& b)
+{
+	time1 swap;
+	if (a.ch > b.ch)
+	{
+		swap = b;
+		b = a;
+		a = swap;
+	}
+	else if (a.mi > b.mi)
+	{
+		swap = b;
+		b = a;
+		a = swap;
+	}
+	else if (a.se > b.se)
+	{
+		swap = b;
+		b = a;
+		a = swap;
+	}
+}
