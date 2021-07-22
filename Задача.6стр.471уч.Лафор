@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+const int MAX = 20;
+int str_srav(char* str_1, char* str_2);
+int main()
+{
+	system("chcp 1251>nul");
+	char str_1[MAX];
+	char str_2[MAX];
+	cin.ignore();
+	cin.getline(str_1, MAX);
+	cin.ignore();
+	cin.getline(str_2, MAX);
+	cout << endl <<"Значение - "<< str_srav(str_1,str_2);
+	system("pause>nul");
+	return 0;
+}
+int str_srav(char* str_1, char* str_2)
+{
+	if (*str_1 == '\0' && *str_2 == '\0')
+		return 0;
+	else
+	{
+		if (*str_1 == '\0')
+			return (-1);
+		if (*str_2 == '\0')
+			return 1;
+		str_srav(++str_1, ++str_2);
+	}
+}
