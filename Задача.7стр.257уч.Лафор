@@ -1,0 +1,66 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class coord
+{
+private:
+	int gradus;
+	float min;
+	char nap;
+public:
+	coord():gradus(0),min(0), nap(0)
+	{}
+	coord(char a, int b, float c) :nap(a), gradus(b), min(c)
+	{}
+	void getcoord()
+	{
+		int a;
+		do {
+			cout << "Введите долготу (N,S,E,W)  - ";
+			cin >> nap;
+			if (!(nap == 'N' || nap == 'S' || nap == 'E' || nap == 'W'))
+				cout << "Ввели не правильное значение долготы, повторите ввод" << endl;
+		} while (!(nap == 'N' || nap == 'S' || nap == 'E' || nap == 'W'));
+		do {
+			a = 0;
+			cout << "Введите кол-во градусов - ";
+			cin >> gradus;
+			if ((nap == 'E') || (nap == 'W'))
+				if (gradus > 180 || gradus < 0)
+				{
+					cout << "Для западной или восточной долготы допустимое значение от 0 до 180" << endl;
+					a = 1;
+				}
+			if (nap == 'N' || nap == 'S')
+				if (gradus > 90 || gradus < 0)
+				{
+					cout << "Для северной или западной долготы допустимые значения от 0 до 90" << endl;
+					a = 1;
+				}
+		} while (a == 1);
+		do {
+			cout << "Введите кол-во минут - ";
+			cin >> min;
+			if (0 > min || min > 60)
+				cout << "Допустимые значения для минут от 0 до 60"<<endl;
+		} while (0>min || min>60);
+	}
+	void dist() const
+	{
+		cout << gradus << '\xB0' << min << "' " << nap <<endl;
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	coord a;
+	for (int i = 0; i < 2; i++)
+	{
+		a.getcoord();
+		a.dist();
+	}
+	system("pause>nul");
+	return 0;
+}
