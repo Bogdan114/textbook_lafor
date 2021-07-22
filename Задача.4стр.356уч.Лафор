@@ -1,0 +1,109 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+class Int
+{
+private:
+	int a;
+public:
+	Int(): a(0)
+	{}
+	Int(int b):a(b)
+	{}
+	void getInt()
+	{
+		cout << "Введите число a - "; cin >> a;
+	}
+	void show()
+	{
+		cout << "Результат - " << a << endl;
+	}
+	Int operator+(Int c)
+	{
+		Int d;
+		long double a1, b1;
+		a1 = static_cast<long double>(a);
+		b1 = static_cast<long double>(c.a);
+		if (a1 + b1 < 2147483648 and -2147483648 < a1 + b1)
+		{
+			d.a = c.a + a;
+		}
+		else
+		{
+			cout << "Выход за границы" << endl;
+			exit(1);
+		}
+		return d;
+	}
+	Int operator-(Int c)
+	{
+		Int d;
+		long double a1, b1;
+		a1 = static_cast<long double>(a);
+		b1 = static_cast<long double>(c.a);
+		if (a1 - b1 < 2147483648 and -2147483648 < a1 - b1)
+		{
+			d.a = a-c.a;
+		}
+		else
+		{
+			cout << "Выход за границы" << endl;
+			exit(1);
+		}
+		return d;
+	}
+	Int operator*(Int c)
+	{
+		Int d;
+		long double a1, b1;
+		a1 = static_cast<long double>(a);
+		b1 = static_cast<long double>(c.a);
+		if (a1 * b1 < 2147483648 and -2147483648 < a1 * b1)
+		{
+			d.a = a * c.a;
+		}
+		else
+		{
+			cout << "Выход за границы" << endl;
+			exit(1);
+		}
+		return d;
+	}
+	Int operator/(Int c)
+	{
+		Int d;
+		long double a1, b1;
+		a1 = static_cast<long double>(a);
+		b1 = static_cast<long double>(c.a);
+		if (a1 / b1 < 2147483648 and -2147483648 < a1 / b1)
+		{
+			d.a = a / c.a;
+		}
+		else
+		{
+			cout << "Выход за границы" << endl;
+			exit(1);
+		}
+		return d;
+	}
+};
+
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	Int p(2147483647);
+	Int a(rand()%10+1);
+	p.show();
+	a.show();
+	Int c;
+	//c = p + a;
+	//c = p - a;
+	//c = p * a;
+	//c = p / a;
+	c.show();
+	system("pause>nul");
+	return 0;
+}
