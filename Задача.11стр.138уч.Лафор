@@ -1,0 +1,96 @@
+#include <iostream>
+#include <cstdlib>
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	char a = 48;
+	char dey = 0;
+	int f = 0, f1 = 0;
+	int sh = 0, sh1 = 0;
+	int p = 0, p1 = 0;
+	do {
+		a = 48;
+		for (;;)
+		{
+			a = _getche();
+			if ((48 <= a) and (a <= 57) and (a != '.'))
+				f = f * 10 + (a - 48);
+			else break;
+		}
+		a = 48;
+		for (;;)
+		{
+			a = _getche();
+			if ((48 <= a) and (a <= 57)and (a != '.'))	
+				sh = sh * 10 + (a - 48);
+			else break;
+		}
+		a = 48;
+		for (;;)
+		{
+			a = _getche();
+			if ((48 <= a) and (a <= 57) and (a != '.') and (a!=' '))
+				p = p * 10 + (a - 48);
+			else break;
+		}
+		dey = a;
+		a = 48;
+
+		for (;;)
+		{
+			a = _getche();
+			if ((48 <= a) and (a <= 57) and (a != '.'))
+				f1 = f1 * 10 + (a - 48);
+			else break;
+		}
+		a = 48;
+		for (;;)
+		{
+			a = _getche();
+			if ((48 <= a) and (a <= 57) and (a != '.'))
+				sh1 = sh1 * 10 + (a - 48);
+			else break;
+		}
+		a = 48;
+		for (;;)
+		{
+			a = _getche();
+			if ((48 <= a) and (a <= 57) and (a != '.') and (a!=' '))
+			p1 = p1 * 10 + (a - 48);
+			else break;
+		}
+		cout << endl << "J" << f << "." << sh << "." << p << endl;
+		cout << endl << "J" << f1 << "." << sh1 << "." << p1 << endl;
+		if (dey - 42 == 0)
+		{
+			cout << "Результат: J" << f * f1 << "." << sh * sh1<<'.' << p*p1<< endl;
+		}
+		if (dey - 43 == 0)
+		{
+			cout << "Результат: J" << f + f1 << "." << sh + sh1 << '.' << p + p1 << endl;
+		}
+		if (dey - 45 == 0)
+		{
+			cout << "Результат: J" << f - f1 << "." << sh - sh1 << '.' << p - p1 << endl;
+		}
+		if (dey - 47 == 0)
+		{
+			cout << "Результат: J" << f / f1 << "." << sh / sh1 << '.' << p / p1 << endl;
+		}
+		dey = 0;
+
+		f = 0;
+		f1 = 0;
+		sh = 0;
+		sh1 = 0;
+		p = 0;
+		p1 = 0;
+		cout << endl << "y если хотите продолжить" << endl;
+	} while ((a = _getche()) == 'y');
+	system("pause>nul");
+	return 0;
+}
