@@ -1,0 +1,100 @@
+#include <iostream>	
+#include <cstdlib>
+#include <string>
+
+using namespace std;
+
+class publication
+{
+protected:
+	string name;
+	float chena;
+public:
+	void getdata()
+	{
+		cout << "Введите название книги: ";
+		cin.ignore();
+		getline(cin, name);
+		cout << "Введите цену книги: ";
+		cin >> chena;
+	}
+	void putdata()
+	{
+		cout << "Имя - " << name << endl << "Цена - " << chena << endl;
+	}
+	publication()
+	{
+		name = "N/A";
+		chena = 0;
+	}
+};
+class sales
+{
+protected:
+	float sales_month;
+	int count_month;
+public:
+	void getdata()
+	{
+		cout << "Сумма проданных за месяц - "; cin >> sales_month;
+		cout << "Кол-во проданных книг - "; cin >> count_month;
+	}
+	void putdata()
+	{
+		cout << "Выручка - " << sales_month << endl << "Кол-во книг - " << count_month << endl;
+	}
+	sales():sales_month(0),count_month(0)
+	{}
+};
+class book :public publication,public sales
+{
+private:
+	int list1;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		sales::getdata();
+		cout << "Кол-во листов - "; cin >> list1;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		sales::putdata();
+		cout << "Кол-во листов - " << list1 << endl;
+	}
+	book() :publication(),sales(), list1(0)
+	{}
+};
+class booklisen :public publication,public sales
+{
+private:
+	float type;
+public:
+	void getdata()
+	{
+		publication::getdata();
+		sales::getdata();
+		cout << "Время - "; cin >> type;
+	}
+	void putdata()
+	{
+		publication::putdata();
+		sales::putdata();
+		cout << "Время - " << type << endl;
+	}
+	booklisen() :publication(),sales(), type(0)
+	{}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	book B;
+	B.getdata();
+	B.putdata();
+	booklisen C;
+	C.getdata();
+	C.putdata();
+	system("pause>nul");
+	return 0;
+}
