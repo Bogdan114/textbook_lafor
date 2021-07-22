@@ -1,0 +1,19 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+	system("chcp 1251>nul");
+	cout << setw(20) << setiosflags(ios::left) << "Москва"
+		<< setw(20) << setiosflags(ios::left) << "Имя"
+		<< setw(20) << setiosflags(ios::left) << "Адрес"
+		<< setw(20) << setiosflags(ios::left) << "Город" <<endl
+		<< setw(20) << setiosflags(ios::left) << "петров"
+		<< setw(20) << setiosflags(ios::left) << "василий"
+		<< setw(20) << setiosflags(ios::left) << "кленовая 16"
+		<< setw(20) << setiosflags(ios::left) << "Санкт-петербург";
+	system("pause>nul");
+	return 0;
+}
