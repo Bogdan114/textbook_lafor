@@ -1,0 +1,66 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+const int MAX = 10;
+
+class Stack
+{
+protected:
+	int count[MAX];
+	int j;
+public:
+	Stack()
+	{
+		j = 0;
+		for (int i = 0; i < MAX; i++)
+			count[i] = 0;
+	}
+	Stack(int k)
+	{
+		count[j] = k;
+	}
+	void get()
+	{
+		cout << count[j] << endl;
+		j--;
+	}
+	void put(int n)
+	{
+		j++;
+		count[j] = n;
+	}
+};
+class pair1
+{
+protected:
+	Stack A;
+	Stack B;
+public:
+	//pair1()
+	//{
+	//	Stack::Stack();
+	//}
+	void get()
+	{
+		A.get();
+		B.get();
+	}
+	void put(int a1,int b1)
+	{
+		A.put(a1);
+		B.put(b1);
+	}
+};
+int main()
+{
+	system("chcp 1251>nul");
+	srand(2);
+	pair1 a;
+	for (int i=0;i<3;i++)
+		a.put(rand()%10+1,rand()%10+1);
+	for (int i = 0; i < 3; i++)
+		a.get();
+	system("pause>nul");
+	return 0;
+}
